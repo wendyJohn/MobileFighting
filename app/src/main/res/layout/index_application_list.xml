@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:drawableLeft="@drawable/labelc"
+            android:text="应用中心"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingTop="15dp" >
+
+        <TextView
+            android:id="@+id/monitor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/monitor"
+            android:gravity="center"
+            android:text="隐患上报"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/inspection_management"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/inspection_management"
+            android:gravity="center"
+            android:text="巡查管理"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/productionlinetours"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/productionlinetours"
+            android:gravity="center"
+            android:text="巡查记录"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/lookuprecord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/lookuprecord"
+            android:gravity="center"
+            android:text="查岗记录"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:paddingTop="8dp" >
+
+        <TextView
+            android:id="@+id/onebuttonalarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/onebuttonalarm"
+            android:gravity="center"
+            android:text="一键报警"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/gridmanagement"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/gridmanagement"
+            android:gravity="center"
+            android:text="网格管理"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/whole"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="6dp"
+            android:drawableTop="@drawable/whole"
+            android:gravity="center"
+            android:text="全部"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

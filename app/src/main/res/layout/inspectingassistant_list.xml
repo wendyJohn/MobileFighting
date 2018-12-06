@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/text_blue" >
+
+        <RelativeLayout
+            android:id="@+id/r_back"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:background="@color/text_blue" >
+
+            <ImageView
+                android:id="@+id/tl_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/back_icon" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="巡查助手"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+   
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/articles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/articles"
+            android:gravity="center"
+            android:text="火灾自动报警\n系统"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/firewatersupply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/firewatersupply"
+            android:gravity="center"
+            android:text="消防供水设施"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/fireartillery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/fireartillery"
+            android:gravity="center"
+            android:text="消防栓（消防炮）\n灭火系统"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="13dp"
+        android:paddingTop="8dp" >
+
+        <TextView
+            android:id="@+id/sprinklerfireextinguishing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/sprinklerfireextinguishing"
+            android:gravity="center"
+            android:text="自动喷水灭火\n系统"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/mechanicalpressurized "
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/mechanicalpressurized"
+            android:gravity="center"
+            android:text="机械加压送风\n排风系统"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/emergencylighting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@xml/select_center"
+            android:drawablePadding="2dp"
+            android:drawableTop="@drawable/emergencylighting"
+            android:gravity="center"
+            android:text="应急照明"
+            android:textColor="@color/gray"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

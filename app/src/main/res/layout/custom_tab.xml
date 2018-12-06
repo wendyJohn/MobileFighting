@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="65.32999dip"
+    android:layout_alignParentBottom="true" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="52.0dip"
+        android:layout_gravity="bottom"
+        android:background="@drawable/tab_bg"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:id="@+id/frame_home"
+            android:layout_width="80dp"
+            android:layout_height="48.0dip" >
+
+            <ImageView
+                android:id="@+id/tab_home_click"
+                android:layout_width="28.0dip"
+                android:layout_height="28.0dip"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="5.0dip"
+                android:src="@drawable/hp_in" />
+
+            <TextView
+                android:id="@+id/tab_home_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="2.0dip"
+                android:text="首頁"
+                android:textColor="@color/text_blue"
+                android:textSize="15dip" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_forums"
+            android:layout_width="100dp"
+            android:layout_height="48.0dip" >
+
+            <ImageView
+                android:id="@+id/tab_bangs"
+                android:layout_width="27.0dip"
+                android:layout_height="27.0dip"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="5.0dip"
+                android:src="@drawable/monitor_on" />
+
+            <TextView
+                android:id="@+id/tab_bang_text_clicks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="2.0dip"
+                android:text="监控"
+                android:textColor="@color/gray"
+                android:textSize="15dip" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_forum"
+            android:layout_width="100dp"
+            android:layout_height="48.0dip" >
+
+            <ImageView
+                android:id="@+id/tab_bang"
+                android:layout_width="27.0dip"
+                android:layout_height="27.0dip"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="5.0dip"
+                android:src="@drawable/journal_on" />
+
+            <TextView
+                android:id="@+id/tab_bang_text_click"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="2.0dip"
+                android:text="日志"
+                android:textColor="@color/gray"
+                android:textSize="15dip" />
+        </FrameLayout>
+        
+        <FrameLayout
+            android:id="@+id/frame_forumps"
+            android:layout_width="80dp"
+            android:layout_height="48.0dip" >
+
+            <ImageView
+                android:id="@+id/tab_bangps"
+                android:layout_width="27.0dip"
+                android:layout_height="27.0dip"
+                android:layout_gravity="top|center"
+                android:layout_marginTop="5.0dip"
+                android:src="@drawable/personal_on" />
+
+            <TextView
+                android:id="@+id/tab_person_text_clicks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="2.0dip"
+                android:text="个人"
+                android:textColor="@color/gray"
+                android:textSize="15dip" />
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

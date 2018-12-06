@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <ImageView
+        android:id="@+id/item_search_img"
+        android:layout_width="@dimen/widget_size_40"
+        android:layout_height="@dimen/widget_size_40"
+        android:src="@drawable/article"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <TextView
+        android:id="@+id/item_search_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试功能"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/item_search_img"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_size_15"
+        />
+    <ImageView
+        android:id="@+id/item_search_add"
+        android:layout_width="@dimen/widget_size_25"
+        android:layout_height="@dimen/widget_size_25"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/sel_nor"
+        />
+
+</RelativeLayout>

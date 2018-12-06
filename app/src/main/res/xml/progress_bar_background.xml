@@ -1,0 +1,28 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@android:id/background"> <!-- 正常情况下的效果 -->
+        <shape>
+            <corners android:radius="2dip" /> <!-- 设置圆角半径 -->
+            <gradient 
+                android:angle="270"
+                android:centerColor="#e5e5e5"
+                android:centerY="2.0"
+                android:endColor="#e5e5e5"
+                android:startColor="#e5e5e5" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress"> <!-- 时行中的效果 -->
+        <clip>
+            <shape>
+                <corners android:radius="2dip" />
+                <gradient
+                    android:angle="270"
+                    android:centerColor="#1E90FF"
+                    android:centerY="2.0"
+                    android:endColor="#1E90FF"
+                    android:startColor="#1E90FF" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

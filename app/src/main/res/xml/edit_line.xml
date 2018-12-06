@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- EditView 输入框底部的横线 -->
+    <item android:drawable="@xml/line_blue" android:state_focused="true"/>
+    <item android:drawable="@xml/line_gray"/>
+
+</selector>

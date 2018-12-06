@@ -1,0 +1,41 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+
+
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- 自定义条形图样式 -->
+    <declare-styleable name="ChartStyle">
+        <attr name="graphTitle" format="string"></attr>
+        <attr name="xAxisName" format="string"></attr>
+        <attr name="yAxisName" format="string"></attr>
+        <attr name="axisTextSize" format="dimension|integer"></attr>
+        <attr name="axisTextColor" format="color|integer"></attr>
+    </declare-styleable>
+    <!-- CustomCheckBox theme -->
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@xml/checkbox_style</item>
+    </style>
+
+    <style name="ThemeHoloLight" parent="android:style/Theme.Holo.Light"></style>
+
+   <style name="DialogTheme" parent="android:Theme.Dialog">
+
+        <item name="android:windowBackground">@xml/dialog_background</item>
+    </style>
+</resources>

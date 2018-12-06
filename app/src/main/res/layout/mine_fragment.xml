@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_userhead"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_200"
+            android:background="@color/text_blue">
+
+            <com.sanleng.mobilefighting.myview.CircleImgView
+                android:id="@+id/iv_userhead"
+                android:layout_width="@dimen/widget_size_60"
+                android:layout_height="@dimen/widget_size_60"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_person"></com.sanleng.mobilefighting.myview.CircleImgView>
+
+            <TextView
+                android:id="@+id/tv_user_headname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_userhead"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="名称"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/iv_userhead"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="个人中心"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/zxing"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignBottom="@+id/seximage"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/zxing"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/seximage"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignTop="@+id/textView1"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/news" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/changepassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginTop="6dp"
+            android:background="@xml/selector_mine_item_bg">
+
+            <ImageView
+                android:id="@+id/item_search_img"
+                android:layout_width="@dimen/widget_size_40"
+                android:layout_height="@dimen/widget_size_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/changepassword" />
+
+            <TextView
+                android:id="@+id/item_search_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/item_search_img"
+                android:text="修改密码"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+
+            <ImageView
+                android:id="@+id/item_search_add"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/into_pic" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/scavengingcaching"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginTop="0.5dp"
+            android:background="@xml/selector_mine_item_bg">
+
+            <ImageView
+                android:id="@+id/item_search_imgb"
+                android:layout_width="@dimen/widget_size_40"
+                android:layout_height="@dimen/widget_size_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/scavengingcaching" />
+
+            <TextView
+                android:id="@+id/item_search_textb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/item_search_imgb"
+                android:text="清除缓存"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+
+            <ImageView
+                android:id="@+id/item_search_addb"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/into_pic" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dataupdate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginTop="0.5dp"
+            android:background="@xml/selector_mine_item_bg">
+
+            <ImageView
+                android:id="@+id/item_search_imgc"
+                android:layout_width="@dimen/widget_size_40"
+                android:layout_height="@dimen/widget_size_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/dataupdate" />
+
+            <TextView
+                android:id="@+id/item_search_textc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/item_search_imgc"
+                android:text="数据更新"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+
+            <ImageView
+                android:id="@+id/item_search_addc"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/into_pic" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/versionupdate"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginTop="6dp"
+            android:background="@xml/selector_mine_item_bg">
+
+            <ImageView
+                android:id="@+id/item_search_imgd"
+                android:layout_width="@dimen/widget_size_40"
+                android:layout_height="@dimen/widget_size_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/versionupdate" />
+
+            <TextView
+                android:id="@+id/item_search_textd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/item_search_imgd"
+                android:text="版本更新"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+
+            <ImageView
+                android:id="@+id/item_search_addd"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/into_pic" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/aboutus"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_45"
+            android:layout_marginTop="0.5dp"
+            android:background="@xml/selector_mine_item_bg">
+
+
+            <ImageView
+                android:id="@+id/item_search_imge"
+                android:layout_width="@dimen/widget_size_40"
+                android:layout_height="@dimen/widget_size_40"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/aboutus" />
+
+            <TextView
+                android:id="@+id/item_search_texte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/item_search_imge"
+                android:text="关于我们"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+
+            <ImageView
+                android:id="@+id/item_search_adde"
+                android:layout_width="@dimen/widget_size_25"
+                android:layout_height="@dimen/widget_size_25"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/into_pic" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/login_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@xml/selector_mine_logout_bg"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="退出登录"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+
+</ScrollView>

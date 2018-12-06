@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <color name="text_blue">#3CBAFF</color>
+    <color name="text_normal">#8D8D8D</color>
+    <color name="view_bg">#F0EEEF</color>
+    <color name="black">#000000</color>
+    <color name="item_btn">#E0E0E0</color>
+    <color name="tab_middle_line_color">#5c882c</color>
+    <!-- 任务处理时按钮的颜色 -->
+    <color name="detail_btn">#E0E0E0</color>
+    <color name="detacolor">#ffffff</color>
+    <color name="bar_color">#232325</color>
+    <color name="lightgray">#D3D3D3</color>
+    <!-- 亮灰色 -->
+    <!-- 标题栏的颜色 -->
+    <color name="title_bg">#3292E6</color>
+    <color name="title_bg_press">#00BFFF</color>
+    <!-- ListView item 级别字体的颜色 -->
+    <color name="color_alarmpressing">#DC143C</color>
+    <color name="color_alarmpressend">#FA8072</color>
+    <color name="color_alarmimport">#FF8C00</color>
+    <color name="color_alarmkind">#FFD700</color>
+    <color name="color_alarmhint">#00BFFF</color>
+    <color name="color_alarmbreak">#008000</color>
+    <color name="color_alarmbreaks">#1afa29</color>
+    <color name="lucensy">#00000001</color>
+    <color name="translucency">#e0000000</color>
+    <color name="orange">#ffa500</color>
+    <color name="blue">#0066dd</color>
+    <!-- <color name="red">#bf242a</color> -->
+    <color name="transparent">#00000000</color>
+    <color name="light_orange">#fcb75c</color>
+    <color name="alpha_00">#00000000</color>
+    <color name="LightGray">#D3D3D3</color>
+    <color name="trans">#50000000</color>
+    <color name="red">#fe0202</color>
+    <color name="background">#e5e5e5</color>
+    <color name="transparent_background">#50000000</color>
+    <color name="Grey">#BEBEBE</color>
+    <color name="endtime">#708090</color>
+    <!-- 登录按钮的颜色(没有登录的颜色) -->
+    <color name="unlogin_btn">#C1ECFD</color>
+    <!-- 登录按钮的颜色(登录的颜色) -->
+    <color name="login_btn">#3DB9FF</color>
+    <color name="login_btn_press">#1679A5</color>
+    <color name="text_gray">#A6A6A6</color>
+    <color name="mine_logout_nor">#FF0033</color>
+
+    <!-- 通讯录颜色设置 -->
+    <color name="border_line">#ffd7dadc</color>
+    <color name="orangered">#ff5900</color>
+    <color name="gray">#ff666666</color>
+    <color name="yello">#fff9bf16</color>
+    <color name="Silver">#c0c0c0</color>
+    <color name="readed">#ffc05500</color>
+    <color name="noread">#ff4b4b4b</color>
+    <color name="transparent01">#9000</color>
+    <color name="gray_bold">#FF606060</color>
+    <color name="movie_name">#FF371A12</color>
+    <color name="TextColorBlack">#FF000000</color>
+    <color name="TextColorBlue">#0066CC</color>
+    <color name="TextColorGray">#FF505050</color>
+    <color name="TextColorRed">#FFE26926</color>
+    <color name="TextColorGreen">#FF00FF00</color>
+    <color name="TextColorRed1">#FFFF0000</color>
+    <color name="TextColorYellow1">#FFFFFF00</color>
+    <color name="TextColorBlue1">#FF080ad3</color>
+    <color name="TextColorGreen1">#FF336619</color>
+    <color name="zzblue">#3f5c84</color>
+    <color name="zzyellow">#c06622</color>
+    <color name="zzblack">#000</color>
+    <color name="window_bg">#fff0f3f6</color>
+    <color name="button_unselected">#ff54acea</color>
+    <color name="button_selected">#ff419de4</color>
+    <color name="info_panel_bg">#ffeeeeee</color>
+    <color name="traffic_bg">#ffecf0f1</color>
+    <color name="traffic_txt">#ff414141</color>
+    <color name="traffic_data">#ff666666</color>
+    <color name="background_color">#f4f4f4</color>
+    <color name="orderconfire_item_bg">#F7F7F7</color>
+    <color name="text_black">#000000</color>
+    <color name="app_stroke_line">#E0E0E0</color>
+    <color name="app_background">#E6E6E6</color>
+    <color name="orderfood_left_text">#7A7A7A</color>
+    <color name="fragment_tab_text">#F02D30</color>
+    <color name="nearby_eachprice">#7A7A7A</color>
+    <color name="sex_info_bg">#EDEDED</color>
+    <color name="black_gray">#686864</color>
+    <color name="gray_thin">#e5e5e5</color>
+
+    <!-- 以下为  二维码所要的颜色 -->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ff86f60e</color>
+    <color name="viewfinder_laser_trs">#7f86f60e</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <!-- 回退按钮颜色 -->
+    <color name="btn_rollback">#2392EA</color>
+    <!-- 系统状态栏[签到]颜色 -->
+    <color name="sys_title_color">#2A93FE</color>
+    <!-- 签到颜色 -->
+    <color name="sign_color">#2A88FE</color>
+    <!-- 系统状态栏[工作汇报]颜色 -->
+    <color name="workreport_title_color">#1CCE6F</color>
+    <color name="text_normal_task">#8D8D8D</color>
+    <color name="text_helptask"> #F0E68C</color>
+    <color name="on_text">#FFFFFF</color>
+    <!-- 开启时文字颜色 -->
+    <color name="off_text">#5B5B5B</color>
+    <!-- 关闭时文字颜色 -->
+    <!-- 窗口背景颜色 -->
+
+    <color name="pictruebackG"> #778899</color>
+    <color name="bgColor_svprogressdefaultview">@android:color/white</color>
+    <color name="roundColor_svprogresshuddefault">#e5e5e5</color>
+    <color name="roundProgressColor_svprogresshuddefault">@android:color/black</color>
+    <color name="textColor_svprogresshuddefault_msg">#000000</color>
+    <color name="bgColor_overlay">#60000000</color>
+    <color name="bgColor_overlay_black">#95000000</color>
+    <color name="bt_on">#ADC3BBD8</color>
+    <color name="bt_off">#ADDDDDDD</color>
+    <color name="stauszi">#800080</color>
+    <color name="stauslan">#0000FF</color>
+    <color name="stausc">#FFA500</color>
+    <color name="staush">#FF0000</color>
+    <color name="stauslv">#40E0D0</color>
+    <color name="staushi">#000000</color>
+    <color name="head_bg">#663300</color>
+    <color name="touming">#00000000</color>
+    <color name="tab_title_normal_color">#262726</color>
+    <color name="tab_title_pressed_color">#16982b</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="error_item_color">#F6EBE6</color>
+    <!-- 黄色 -->
+    <color name="text_yellow">#FFD700</color>
+    <color name="green">#32CD32</color>
+    <!-- 淡灰色 -->
+    <color name="grayish">#DCDCDC</color>
+    <!-- 淡绿色 -->
+    <color name="LightGreen">#32CD32</color>
+    <color name="normal_bg_color">#f0f0f0</color>
+    <color name="yellowGreen">#42bf06</color>
+    <color name="normal_orange">#ff6633</color>
+    <color name="yellos">#ea881f</color>
+    <color name="copa">#FF6347</color>
+    <color name="copb">#FF8C00</color>
+    <color name="copc">#3CBAFF</color>
+    <color name="pull_down_bg">#F7F7F7</color>
+    <color name="color1">#FFFFFF</color>
+    <color name="color2">#666666</color>
+    <color name="color3">#D0D0D0</color>
+    <color name="color4">#F6F6F6</color>
+    <color name="color13">#F9974E</color>
+    <color name="color14">#59B29C</color>
+    <color name="color25">#ED5564</color>
+    <color name="color26">#D7D8DC</color>
+    <color name="colorRed">#F65E5D</color>
+    <color name="colorGray">#6c6c6c</color>
+    <color name="controller_bg">#80000000</color>
+    <color name="controller_tv_color">#ffffff</color>
+    <color name="bg">#ffffff</color>
+
+</resources>
