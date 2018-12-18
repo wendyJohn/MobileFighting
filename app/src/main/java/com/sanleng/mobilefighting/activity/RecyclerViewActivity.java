@@ -248,8 +248,8 @@ public class RecyclerViewActivity extends Activity {
                     map.put("name", name);
                     map.put("category", "专题类别：" + category);
                     map.put("frequency", frequency + "次");
-                    map.put("picname_hospital_s", "http://10.101.80.113:8080" + cover_img);
-                    map.put("record_url", "http://10.101.80.113:8080" + record_url);
+                    map.put("picname_hospital_s", URLs.HOST + cover_img);
+                    map.put("record_url", URLs.HOST + record_url);
                     list.add(map);
                 }
 
@@ -317,7 +317,7 @@ public class RecyclerViewActivity extends Activity {
                         // 带进度条拖放功能
                         Intent intent = new Intent(RecyclerViewActivity.this, VideoSurfaceActivity.class);
                         intent.putExtra("record_url", record_url);
-                        intent.putExtra("url", "http://10.101.80.113:8080/" + content);
+                        intent.putExtra("url", URLs.HOST + content);
                         intent.putExtra("name", name);
                         intent.putExtra("category", category);
                         intent.putExtra("frequency", frequency);

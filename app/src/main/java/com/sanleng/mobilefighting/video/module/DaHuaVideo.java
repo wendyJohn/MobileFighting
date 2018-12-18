@@ -35,7 +35,11 @@ public class DaHuaVideo {
         mLiveModule = new LivePreviewModule(context);
     }
 
-    public long getLoginHandle(){
+    public long getLoginHandle(String mAddress,String mPort,String mUsername,String mPassword ){
+        this.mAddress=mAddress;
+        this.mAddress=mPort;
+        this.mAddress=mUsername;
+        this.mAddress=mPassword;
         return mLoginModule.getLoginHandle();
     }
 
@@ -47,10 +51,12 @@ public class DaHuaVideo {
     }
 
     public boolean login() {
-        mAddress = "10.101.208.102";
-        mPort = "51033";
-        mUsername = "admin";
-        mPassword = "admin";
+        System.out.printf("mAddress");
+
+//        mAddress = "10.101.208.102";
+//        mPort = "51033";
+//        mUsername = "admin";
+//        mPassword = "admin";
         return mLoginModule.login(mAddress, mPort, mUsername, mPassword);
     }
 

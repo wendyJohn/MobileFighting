@@ -133,14 +133,15 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_15" />
 
-            <ImageView
+            <TextView
                 android:id="@+id/item_search_addb"
-                android:layout_width="@dimen/widget_size_25"
-                android:layout_height="@dimen/widget_size_25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:src="@drawable/into_pic" />
+                android:text="0.0KB"
+               />
 
         </RelativeLayout>
 

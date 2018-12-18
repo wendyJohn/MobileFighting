@@ -228,10 +228,9 @@ public class ArticleActivity extends Activity {
                     map.put("name", name);
                     map.put("category", "专题类别：" + category);
                     map.put("frequency", frequency + "次");
-                    map.put("picname_hospital_s", "http://10.101.80.113:8080" + cover_img);
+                    map.put("picname_hospital_s", URLs.HOST + cover_img);
                     list.add(map);
                 }
-
                 if (SIZE % length == 0) {
                     allpage = SIZE / length;
                 } else {
@@ -240,7 +239,6 @@ public class ArticleActivity extends Activity {
             } else {
 
             }
-
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -295,7 +293,7 @@ public class ArticleActivity extends Activity {
                         String content = objects.getString("content");
 
                         Intent intent = new Intent(ArticleActivity.this, ArticleItemActivity.class);
-                        intent.putExtra("url", "http://10.101.80.113:8080/" + content);
+                        intent.putExtra("url", URLs.HOST + content);
                         intent.putExtra("name", name);
                         intent.putExtra("category", category);
                         intent.putExtra("frequency", frequency);

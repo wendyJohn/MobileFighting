@@ -65,7 +65,6 @@ public class PatrolHandleActivity extends Activity implements OnClickListener {
 	private PromptDialog promptDialog;
 	private boolean is_divPage;// 是否进行分页操作
 	private boolean finish = true;// 是否加载完成;
-
 	private PatrolRecordAdapter patrolRecordAdapter;
 
 	public void onCreate(Bundle savedInstanceState) {

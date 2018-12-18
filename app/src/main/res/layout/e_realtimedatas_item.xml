@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_thin"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@xml/setting_item_selector">
+
+
+        <ImageView
+            android:id="@+id/my_pic"
+            android:layout_width="@dimen/widget_size_40"
+            android:layout_height="@dimen/widget_size_40"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/e_realtimedata" />
+
+        <LinearLayout
+            android:id="@+id/dress_youta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@+id/yout_ic"
+            android:layout_toRightOf="@+id/my_pic"
+            android:background="@xml/setting_item_selector"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/w_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="南京工程学院A栋一层配电箱"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dress_yout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dress_youta"
+            android:layout_alignLeft="@+id/dress_youta"
+            android:layout_toLeftOf="@+id/yout_ic"
+            android:background="@xml/setting_item_selector"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/temperature"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:text="报警时间：2018/12/13 00:00"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_size_13" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/yout_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/temperaturealarm"
+                android:layout_width="@dimen/font_size_26"
+                android:layout_height="@dimen/font_size_28"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/temperaturealarms"
+                android:layout_width="@dimen/font_size_26"
+                android:layout_height="@dimen/font_size_28"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

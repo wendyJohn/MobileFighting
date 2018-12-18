@@ -68,13 +68,13 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
         login_btn = (Button) findViewById(R.id.login_btn);
         login_number = (EditText) findViewById(R.id.login_number);
         login_password = (EditText) findViewById(R.id.login_password);
-//		scrollviewRootLayout = (RelativeLayout) findViewById(R.id.scrollviewRootLayout);
+        //	scrollviewRootLayout = (RelativeLayout) findViewById(R.id.scrollviewRootLayout);
         login_questions = (TextView) findViewById(R.id.login_questions);
         login_btn.setOnClickListener(this);
         login_password.setOnClickListener(this);
         login_number.addTextChangedListener(this);
         login_password.addTextChangedListener(this);
-//		controlKeyboardLayout(scrollviewRootLayout, login_questions);
+        //	controlKeyboardLayout(scrollviewRootLayout, login_questions);
 
         whether_contact = (CheckBox) findViewById(R.id.whether_contact);
         whether_contact.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -102,8 +102,12 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
                 login_number.setText(lastAccount);
                 login_password.setText(lastPwd);
 
-                Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
                 startActivity(intent_pwdchange);
+
+                //Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                //startActivity(intent_pwdchange);
+
                 finish();
             }
         }
@@ -113,10 +117,10 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_btn:
-//			测试
-//			Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
-//			startActivity(intent_pwdchange);
-//			finish();
+                //测试
+                //Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                //startActivity(intent_pwdchange);
+                //finish();
 
                 userName = login_number.getText().toString().trim();
                 password = login_password.getText().toString().trim();
@@ -166,8 +170,12 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
                                 new Handler().postDelayed(new Runnable() {
                                     public void run() {
                                         // 等待2000毫秒后销毁此页面，并提示登陆成功
-                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
                                         startActivity(intent_pwdchange);
+
+//                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+//                                        startActivity(intent_pwdchange);
+
                                         finish();
                                     }
                                 }, 1000);

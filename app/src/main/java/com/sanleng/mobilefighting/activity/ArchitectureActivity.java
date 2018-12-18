@@ -30,8 +30,7 @@ import java.util.List;
 
 /**
  * 电气火灾建筑列表
- *
- * @author Qiaoshi
+ * @author qiaoshi
  */
 @SuppressLint("ResourceAsColor")
 public class ArchitectureActivity extends Activity {
@@ -62,7 +61,7 @@ public class ArchitectureActivity extends Activity {
 
 	// 加载建筑数据
 	private void loadData() {
-		mylist = new ArrayList<ArchitectureBean>();
+		mylist = new ArrayList<>();
 		RequestParams params = new RequestParams();
 		params.put("unit_id", PreferenceUtils.getString(ArchitectureActivity.this, "unitcode"));
 		params.put("username",PreferenceUtils.getString(ArchitectureActivity.this, "MobileFig_username"));
@@ -71,7 +70,6 @@ public class ArchitectureActivity extends Activity {
 		RequestUtils.ClientPost(URLs.Architecture_URL, params, new NetCallBack() {
 			@Override
 			public void onStart() {
-//				promptDialog.showLoading("正在加载...");
 				super.onStart();
 			}
 
@@ -81,7 +79,6 @@ public class ArchitectureActivity extends Activity {
 					return;
 				}
 				System.out.println("数据请求成功" + result);
-//				promptDialog.dismiss();
 				try {
 					JSONObject jsonObject = new JSONObject(result);
 					String msg = jsonObject.getString("msg");
@@ -98,7 +95,6 @@ public class ArchitectureActivity extends Activity {
 							bean.setName(build_name);
 							mylist.add(bean);
 						}
-
 						architecturelistview = (ListView) findViewById(R.id.architecturelistview);
 						architectureAdapter = new ArchitectureAdapter(ArchitectureActivity.this, mylist);
 						architecturelistview.setAdapter(architectureAdapter);
@@ -117,19 +113,16 @@ public class ArchitectureActivity extends Activity {
 					} else {
 						promptDialog.showError(msg);
 					}
-
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-
 			@Override
 			public void onMyFailure(Throwable arg0) {
 				promptDialog.showError("加载失败");
 			}
 		});
-
 	}
 
 	/**
@@ -137,11 +130,9 @@ public class ArchitectureActivity extends Activity {
 	 */
 	private class MyOnClickListener implements OnClickListener {
 		private int index = 0;
-
 		public MyOnClickListener(int i) {
 			index = i;
 		}
-
 		public void onClick(View v) {
 			switch (index) {
 				case 0:

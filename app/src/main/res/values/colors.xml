@@ -9,6 +9,7 @@
     <color name="black">#000000</color>
     <color name="item_btn">#E0E0E0</color>
     <color name="tab_middle_line_color">#5c882c</color>
+    <color name="black2">#ffeeeeee</color>
     <!-- 任务处理时按钮的颜色 -->
     <color name="detail_btn">#E0E0E0</color>
     <color name="detacolor">#ffffff</color>

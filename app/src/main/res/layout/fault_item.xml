@@ -30,7 +30,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="6dp"
                     android:gravity="center_vertical"
                     android:text="报警时间："
                     android:textColor="@color/black"
@@ -65,7 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="6dp"
                     android:gravity="center_vertical"
                     android:text="报警设备："
                     android:textColor="@color/black"
@@ -99,7 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="6dp"
                     android:gravity="center_vertical"
                     android:text="报警位置："
                     android:textColor="@color/black"
@@ -133,7 +133,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="6dp"
                     android:gravity="center_vertical"
                     android:text="报警单位："
                     android:textColor="@color/black"

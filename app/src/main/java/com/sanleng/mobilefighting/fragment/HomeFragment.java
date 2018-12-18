@@ -348,12 +348,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         RequestParams params = new RequestParams();
         params.put("username", PreferenceUtils.getString(getActivity(), "MobileFig_username"));
         RequestUtils.ClientPost(
-                "http://10.101.80.113:8080/kspf/app/publicityedu/banner?platformkey=app_firecontrol_owner", params,
+                URLs.HOST + "/kspf/app/publicityedu/banner?platformkey=app_firecontrol_owner", params,
                 new NetCallBack() {
                     @Override
                     public void onStart() {
                         super.onStart();
                     }
+
                     @Override
                     public void onMySuccess(String result) {
                         if (result == null || result.length() == 0) {
@@ -368,7 +369,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             for (int i = 0; i < array.length(); i++) {
                                 object = (JSONObject) array.get(i);
                                 String url = object.getString("url");
-                                urls.add("http://10.101.80.113:8080" + url);
+                                urls.add(URLs.HOST + url);
                             }
 
                             banner = (BannerView) view.findViewById(R.id.bannerview);

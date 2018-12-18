@@ -1,0 +1,240 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_size_45"
+        android:background="@color/text_blue">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="智能火灾报警系统"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_16" />
+
+        <ImageView
+            android:id="@+id/query_im"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/query" />
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/title_bar"
+        layout="@layout/index_image_list" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/alarmprompt_ic" />
+
+        <com.sanleng.mobilefighting.myview.MarqueeViews
+            android:id="@+id/marqueeviews"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/widget_size_30"></com.sanleng.mobilefighting.myview.MarqueeViews>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/yaout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/spinner_architecture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="6dp"
+            android:layout_weight="1"
+            android:background="@xml/feed_back_type_text_bg">
+
+            <TextView
+                android:id="@+id/architecture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="3dp"
+                android:text="建筑"
+                android:textColor="#4a5764"
+                android:textSize="@dimen/text_size_12" />
+
+            <ImageView
+                android:id="@+id/droponea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/drop_down_arrow" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/droponea"
+                android:background="@drawable/drop_down_arrwo_line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spinner_floor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@xml/feed_back_type_text_bg">
+
+            <TextView
+                android:id="@+id/floor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="3dp"
+                android:text="楼层"
+                android:textColor="#4a5764"
+                android:textSize="@dimen/text_size_12" />
+
+            <ImageView
+                android:id="@+id/droponeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/drop_down_arrow" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/droponeb"
+                android:background="@drawable/drop_down_arrwo_line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spinner_box"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:background="@xml/feed_back_type_text_bg">
+
+            <TextView
+                android:id="@+id/box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="3dp"
+                android:text="配电箱"
+                android:textColor="#4a5764"
+                android:textSize="@dimen/text_size_12" />
+
+            <ImageView
+                android:id="@+id/droponec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/drop_down_arrow" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/droponec"
+                android:background="@drawable/drop_down_arrwo_line" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/spinner_equipment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="6dp"
+            android:layout_weight="1"
+            android:background="@xml/feed_back_type_text_bg">
+
+            <TextView
+                android:id="@+id/equipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="3dp"
+                android:text="设备"
+                android:textColor="#4a5764"
+                android:textSize="@dimen/text_size_12" />
+
+            <ImageView
+                android:id="@+id/droponed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/drop_down_arrow" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/droponed"
+                android:background="@drawable/drop_down_arrwo_line" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#CFCFCF" />
+
+    <ListView
+        android:id="@+id/realtimedatalslistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_thin"
+        android:cacheColorHint="#00000000"
+        android:divider="#dddbdb"
+        android:dividerHeight="1.0px"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@android:color/transparent"></ListView>
+
+    <TextView
+        android:id="@+id/nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="没有更多数据了哦~"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/text_size_16" />
+</LinearLayout>

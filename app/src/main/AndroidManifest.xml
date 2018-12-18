@@ -21,8 +21,10 @@
 
 
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE"></permission>
+
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.READ_LOGS"
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions"></uses-permission>
 
     <!-- Required  一些系统要求的权限，如访问网络等 -->
@@ -84,19 +86,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:icon,android:theme,android:allowBackup">
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="IiMKsiXj3e7bgFwcRRgqplGWVmCESbPp" />
 
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!-- 登录 -->
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!-- 主界面 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MainActivity"
@@ -231,6 +239,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan"></activity>
+        <!--密码修改 -->
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.PwdChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan"></activity>
 
         <!-- 电气火灾建筑列表 -->
         <activity
@@ -318,7 +332,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan"></activity>
-
+        <!-- 报警信息列表 -->
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.AlarmRecordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!-- 火警位置查看 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MapFunctionActivity"
@@ -348,6 +367,12 @@
         <!-- 监控站列表 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MonitoringStationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <!-- 智能火灾报警系统 -->
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.MainFireAlarmActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan"></activity>

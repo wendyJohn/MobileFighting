@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b_security" >
+    android:background="@drawable/b_security">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/login_pic"
@@ -26,15 +26,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_pic"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
                 android:background="@xml/edit_line"
-                android:drawableLeft="@drawable/login"
+                android:drawableLeft="@drawable/login_tip_phone_light"
                 android:drawablePadding="10dp"
                 android:hint="请输入用户名"
-                android:paddingBottom="10dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:singleLine="true"
                 android:textCursorDrawable="@xml/cursor_color" />
 
@@ -44,15 +44,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_number"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@xml/edit_line"
-                android:drawableLeft="@drawable/passwork"
+                android:drawableLeft="@drawable/login_tip_password"
                 android:drawablePadding="10dp"
                 android:hint="请输入密码"
-                android:paddingBottom="10dp"
                 android:paddingLeft="8dp"
                 android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:password="true"
                 android:singleLine="true"
                 android:textCursorDrawable="@xml/cursor_color" />
@@ -61,13 +61,12 @@
                 android:id="@+id/login_questions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_below="@+id/login_password"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:text="忘记密码？"
-                android:textColor="@color/text_blue" />
+                android:layout_marginRight="20dp"
+                android:text="忘记密码？" />
 
             <TextView
                 android:id="@+id/code_login"
@@ -75,8 +74,9 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/login_btn"
                 android:layout_alignLeft="@+id/login_btn"
-                android:layout_marginLeft="25dp"
-                android:text="记住密码" />
+                android:layout_marginLeft="@dimen/widget_size_33"
+                android:text="记住密码"
+                android:textColor="@color/text_blue" />
 
             <CheckBox
                 android:id="@+id/whether_contact"
@@ -84,17 +84,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/code_login"
-                android:layout_alignBottom="@+id/code_login"
                 android:layout_alignLeft="@+id/login_password"
+                android:layout_alignBottom="@+id/code_login"
                 android:gravity="center_vertical" />
 
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/widget_size_45"
-                android:layout_marginTop="@dimen/widget_size_20"
                 android:layout_below="@+id/login_questions"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="@dimen/widget_size_20"
                 android:layout_marginRight="20dp"
                 android:background="@xml/login_btn_color"
                 android:enabled="false"

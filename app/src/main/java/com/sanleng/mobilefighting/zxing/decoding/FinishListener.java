@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.mobilefighting.zxing.decoding;
+package com.sanleng.mobilefighting.zxing.decoding;
 
 import android.app.Activity;
 import android.content.DialogInterface;

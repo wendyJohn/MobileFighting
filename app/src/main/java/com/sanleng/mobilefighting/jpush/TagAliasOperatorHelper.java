@@ -162,7 +162,7 @@ public class TagAliasOperatorHelper {
     }
 
     private String getRetryStr(boolean isAliasAction,int actionType,int errorCode){
-        String str = "Failed to %s %s due to %s. Try again after 60s.";
+        String str = "";
         str = String.format(Locale.ENGLISH,str,getActionStr(actionType),(isAliasAction? "alias" : " tags") ,(errorCode == 6002 ? "timeout" : "server too busy"));
         return str;
     }

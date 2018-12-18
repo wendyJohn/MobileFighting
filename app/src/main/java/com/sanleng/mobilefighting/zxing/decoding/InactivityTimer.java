@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 
+import com.sanleng.mobilefighting.zxing.decoding.FinishListener;
+
 /**
  * Finishes an activity after a period of inactivity.
  */
