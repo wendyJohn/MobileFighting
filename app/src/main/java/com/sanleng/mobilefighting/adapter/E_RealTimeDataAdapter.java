@@ -107,24 +107,22 @@ public class E_RealTimeDataAdapter extends BaseAdapter {
         String number = mList.get(position).getNumber();
         int str = Integer.parseInt(number);
         if (str == 0) {
-            holder.message_item_unread.setText(number);
             holder.message_item_unread.setVisibility(View.GONE);
         }
         if (str > 0) {
-            holder.message_item_unread.setText(number);
             holder.message_item_unread.setVisibility(View.VISIBLE);
         }
 
         if (state.equals("无报警")) {
             holder.temperaturealarm.setVisibility(View.GONE);
             holder.temperaturealarms.setVisibility(View.VISIBLE);
-            holder.address.setTextColor(mContext.getResources().getColor(R.color.black));
+//            holder.address.setTextColor(mContext.getResources().getColor(R.color.black));
             holder.temperaturealarms.setBackground(mContext.getResources().getDrawable(R.drawable.ealarms));
         }
         if (state.equals("有报警")) {
             holder.temperaturealarm.setVisibility(View.VISIBLE);
             holder.temperaturealarms.setVisibility(View.GONE);
-            holder.address.setTextColor(mContext.getResources().getColor(R.color.red));
+//            holder.address.setTextColor(mContext.getResources().getColor(R.color.red));
         }
         //确认拍照
         holder.confirmphoto.setOnClickListener(new OnClickListener() {

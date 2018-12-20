@@ -41,14 +41,15 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="2dp"
             android:background="@drawable/alarmprompt_ic" />
 
         <com.sanleng.mobilefighting.myview.MarqueeViews
             android:id="@+id/marqueeviews"
+            android:layout_marginLeft="6dp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/widget_size_30"></com.sanleng.mobilefighting.myview.MarqueeViews>
 

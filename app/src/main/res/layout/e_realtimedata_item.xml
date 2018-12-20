@@ -27,8 +27,8 @@
 
                 <ImageView
                     android:id="@+id/my_pic"
-                    android:layout_width="@dimen/widget_size_40"
-                    android:layout_height="@dimen/widget_size_40"
+                    android:layout_width="@dimen/widget_size_35"
+                    android:layout_height="@dimen/widget_size_35"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
@@ -40,7 +40,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:text="南京工程学院A栋一层配电箱"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_15" />
@@ -85,8 +85,10 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/temperature_ic"
+                android:drawablePadding="5dp"
                 android:text="当前温度：20℃"
-                android:textColor="@color/black"
+                android:textColor="@color/text_blue"
                 android:textSize="@dimen/text_size_13" />
 
             <TextView
@@ -97,7 +99,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_weight="1"
                 android:text="限值：0～100℃"
-                android:textColor="@color/black"
+                android:textColor="@color/gray_bold"
                 android:textSize="@dimen/text_size_13" />
 
         </LinearLayout>
@@ -120,8 +122,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/electriccurrent_ic"
+                android:drawablePadding="3dp"
                 android:text="剩余电流：20MA"
-                android:textColor="@color/black"
+                android:textColor="@color/red"
                 android:textSize="@dimen/text_size_13" />
 
             <TextView
@@ -130,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="限值：30～100MA"
-                android:textColor="@color/black"
+                android:textColor="@color/gray_bold"
                 android:textSize="@dimen/text_size_13" />
 
         </LinearLayout>
@@ -152,6 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/repair_ic"
                 android:text="电气维修：张默"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
@@ -162,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="电话：12345678910"
-                android:textColor="@color/black"
+                android:textColor="@color/gray_bold"
                 android:textSize="@dimen/text_size_13" />
 
         </LinearLayout>
@@ -172,7 +177,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dress_youte"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             android:orientation="horizontal"
             android:weightSum="3">
 
@@ -180,13 +186,16 @@
                 android:id="@+id/confirmphoto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@xml/select_dialog_button_bg"
+                android:background="@drawable/select_realdata_but"
+                android:drawableLeft="@drawable/btn_a"
                 android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:text="确认拍照"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -195,6 +204,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -202,25 +212,26 @@
                         android:id="@+id/pendingdisposal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@xml/select_dialog_button_bg"
+                        android:background="@drawable/select_realdata_but"
+                        android:drawableLeft="@drawable/btn_b"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
                         android:text="待处理"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <TextView
                         android:id="@+id/message_item_unread"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/number"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/aii"
                         android:gravity="center"
-                        android:text="0"
-                        android:layout_marginRight="2dp"
-                        android:textColor="@color/white"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
                         android:visibility="visible" />
+
                 </RelativeLayout>
             </LinearLayout>
 
@@ -228,13 +239,16 @@
                 android:id="@+id/historicaltrack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="6dp"
                 android:layout_weight="1"
-                android:background="@xml/select_dialog_button_bg"
+                android:background="@drawable/select_realdata_but"
+                android:drawableLeft="@drawable/btn_c"
                 android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 android:text="历史轨迹"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
         </LinearLayout>
 

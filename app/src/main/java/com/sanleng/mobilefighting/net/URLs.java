@@ -4,9 +4,11 @@ package com.sanleng.mobilefighting.net;
  * @author qiaoshi
  */
 public class URLs {
+
     //云平台地址
     //public static String HOST_IP = "47.100.192.169";
     //public static String HOST_PORT = "8080";
+
     //调试地址
     public static String HOST_IP = "10.101.80.113";
     public static String HOST_PORT = "8080";

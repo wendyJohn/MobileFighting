@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.loopj.android.http.RequestParams;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.dialog.PromptDialog;
-import com.sanleng.mobilefighting.jpush.MyJPushMessageReceiver;
 import com.sanleng.mobilefighting.jpush.TagAliasOperatorHelper;
 import com.sanleng.mobilefighting.jpush.TagAliasOperatorHelper.TagAliasBean;
 import com.sanleng.mobilefighting.net.NetCallBack;
@@ -105,8 +104,8 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
                 Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
                 startActivity(intent_pwdchange);
 
-                //Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
-                //startActivity(intent_pwdchange);
+//                Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+//                startActivity(intent_pwdchange);
 
                 finish();
             }
@@ -118,9 +117,9 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
         switch (v.getId()) {
             case R.id.login_btn:
                 //测试
-                //Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
-                //startActivity(intent_pwdchange);
-                //finish();
+//                Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+//                startActivity(intent_pwdchange);
+//                finish();
 
                 userName = login_number.getText().toString().trim();
                 password = login_password.getText().toString().trim();

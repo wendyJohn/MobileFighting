@@ -58,7 +58,6 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
 	private static final int[] TAB_ICON_ACTIVE_IDS = new int[] { R.drawable.hp_in, R.drawable.monitor_in,
 			R.drawable.journal_in, R.drawable.personal_in };
 	private FragmentManager mFragmentManager;
-
 	private HomeFragment f1;
 	private MonitorCenterFragment f2;
 	private MapFunctionFragment f3;

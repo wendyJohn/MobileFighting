@@ -16,7 +16,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="历史报警"
+            android:text="历史记录"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_16" />
     </RelativeLayout>

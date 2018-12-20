@@ -4,8 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,19 +12,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
+import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
+import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.ButtonEnum;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.fragment.AlarmRecordFragment;
 import com.sanleng.mobilefighting.fragment.E_RealTimeDataFragment;
 import com.sanleng.mobilefighting.fragment.NewMineFragment;
+import com.sanleng.mobilefighting.util.BuilderManager;
+import com.sanleng.mobilefighting.util.DrawableUtil;
+
+import org.xclcharts.common.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +46,13 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class MainFireAlarmActivity extends FragmentActivity {
 
     private ViewPager viewPager;// 页卡内容
-    private ImageView imageView;// 动画图片
-    private TextView voiceAnswer, healthPedia, pDected;// 选项名称
+//    private ImageView imageView;// 动画图片
 
     private List<Fragment> fragments;// Tab页面列表
     private int offset = 0;// 动画图片偏移量
     private int currIndex = 0;// 当前页卡编号
     private int bmpW;// 动画图片宽度
-    private int selectedColor, unSelectedColor;
-    private int c_opa;
     private static final int pageSize = 3;
-    private LinearLayout opa, opb, opc;
-
     private static final String BROADCAST_PERMISSION_DISC = "com.permissions.MY_BROADCAST";
     private static final String BROADCAST_ACTION_DISC = "com.permissions.my_broadcast";
 
@@ -60,7 +61,15 @@ public class MainFireAlarmActivity extends FragmentActivity {
 
     private Receiver receiver;
     private SweetAlertDialog sweetAlertDialog;
-
+    private BoomMenuButton bmb;
+    private RadioButton opa, opb, opc;
+    private int mBottomDrawableSize;
+    // 默认图片
+    private static final int[] TAB_ICON_NORMAL_IDS = new int[] { R.drawable.emergencya_on,
+            R.drawable.emergencyb_on, R.drawable.emergencyc_on };
+    // 点击图片
+    private static final int[] TAB_ICON_ACTIVE_IDS = new int[] { R.drawable.emergencya_in,
+            R.drawable.emergencyb_in, R.drawable.emergencyc_in };
     @Override
     protected void onCreate(Bundle arg0) {
         // TODO Auto-generated method stub
@@ -74,16 +83,27 @@ public class MainFireAlarmActivity extends FragmentActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(BROADCAST_ACTION_DISC); // 只有持有相同的action的接受者才能接收此广
         registerReceiver(receiver, intentFilter, BROADCAST_PERMISSION_DISC, null);
-
-        selectedColor = getResources().getColor(R.color.white);
-        unSelectedColor = getResources().getColor(R.color.black);
-        c_opa = getResources().getColor(R.color.copc);
-        opa = (LinearLayout) findViewById(R.id.opa);
-        opb = (LinearLayout) findViewById(R.id.opb);
-        opc = (LinearLayout) findViewById(R.id.opc);
-        InitImageView();
+        mBottomDrawableSize = DensityUtil.dip2px(this, 30);
+        opa = (RadioButton) findViewById(R.id.opa);
+        opb = (RadioButton) findViewById(R.id.opb);
+        opc = (RadioButton) findViewById(R.id.opc);
         InitTextView();
         InitViewPager();
+        setBottomTextColor(0);
+        bmb = (BoomMenuButton) findViewById(R.id.bmb);
+        assert bmb != null;
+        bmb.setButtonEnum(ButtonEnum.SimpleCircle);
+        bmb.setPiecePlaceEnum(PiecePlaceEnum.DOT_9_1);
+        bmb.setButtonPlaceEnum(ButtonPlaceEnum.SC_9_1);
+        for (int i = 0; i < bmb.getPiecePlaceEnum().pieceNumber(); i++)
+            bmb.addBuilder(BuilderManager.getSimpleCircleButtonBuilder()
+            .listener(new OnBMClickListener() {
+                @Override
+                public void onBoomButtonClick(int index) {
+                    Toast.makeText(MainFireAlarmActivity.this, "Clicked " + index, Toast.LENGTH_SHORT).show();
+                }
+            })
+            );
     }
 
     @Override
@@ -110,18 +130,6 @@ public class MainFireAlarmActivity extends FragmentActivity {
      * 初始化头标
      */
     private void InitTextView() {
-        voiceAnswer = (TextView) findViewById(R.id.tab_1);
-        healthPedia = (TextView) findViewById(R.id.tab_2);
-        pDected = (TextView) findViewById(R.id.tab_3);
-
-        voiceAnswer.setTextColor(selectedColor);
-        healthPedia.setTextColor(unSelectedColor);
-        pDected.setTextColor(unSelectedColor);
-
-        voiceAnswer.setText("实时监控");
-        healthPedia.setText("历史报警");
-        pDected.setText("个人中心");
-
         opa.setOnClickListener(new MyOnClickListener(0));
         opb.setOnClickListener(new MyOnClickListener(1));
         opc.setOnClickListener(new MyOnClickListener(2));
@@ -131,18 +139,18 @@ public class MainFireAlarmActivity extends FragmentActivity {
      * 初始化动画，这个就是页卡滑动时，下面的横线也滑动的效果，在这里需要计算一些数据
      */
 
-    private void InitImageView() {
-        imageView = (ImageView) findViewById(R.id.cursor);
-        bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.tab_selected_bg).getWidth();// 获取图片宽度
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int screenW = dm.widthPixels;// 获取分辨率宽度
-        offset = (screenW / pageSize - bmpW) / 2;// 计算偏移量--(屏幕宽度/页卡总数-图片实际宽度)/2//
-        // = 偏移量
-        Matrix matrix = new Matrix();
-        matrix.postTranslate(offset, 0);
-        imageView.setImageMatrix(matrix);// 设置动画初始位置
-    }
+//    private void InitImageView() {
+//        imageView = (ImageView) findViewById(R.id.cursor);
+//        bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.tab_selected_bg).getWidth();// 获取图片宽度
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//        int screenW = dm.widthPixels;// 获取分辨率宽度
+//        offset = (screenW / pageSize - bmpW) / 2;// 计算偏移量--(屏幕宽度/页卡总数-图片实际宽度)/2//
+//        // = 偏移量
+//        Matrix matrix = new Matrix();
+//        matrix.postTranslate(offset, 0);
+//        imageView.setImageMatrix(matrix);// 设置动画初始位置
+//    }
 
     /**
      * 头标点击监听
@@ -157,30 +165,13 @@ public class MainFireAlarmActivity extends FragmentActivity {
         public void onClick(View v) {
             switch (index) {
                 case 0:
-                    voiceAnswer.setTextColor(selectedColor);
-                    healthPedia.setTextColor(unSelectedColor);
-                    pDected.setTextColor(unSelectedColor);
-
-                    opa.setBackgroundColor(c_opa);
-                    opb.setBackgroundColor(selectedColor);
-                    opc.setBackgroundColor(selectedColor);
+                    setBottomTextColor(0);
                     break;
                 case 1:
-                    healthPedia.setTextColor(selectedColor);
-                    voiceAnswer.setTextColor(unSelectedColor);
-                    pDected.setTextColor(unSelectedColor);
-
-                    opa.setBackgroundColor(selectedColor);
-                    opb.setBackgroundColor(c_opa);
-                    opc.setBackgroundColor(selectedColor);
+                    setBottomTextColor(1);
                     break;
                 case 2:
-                    pDected.setTextColor(selectedColor);
-                    voiceAnswer.setTextColor(unSelectedColor);
-                    healthPedia.setTextColor(unSelectedColor);
-                    opa.setBackgroundColor(selectedColor);
-                    opb.setBackgroundColor(selectedColor);
-                    opc.setBackgroundColor(c_opa);
+                    setBottomTextColor(2);
                     break;
             }
             viewPager.setCurrentItem(index);
@@ -207,38 +198,16 @@ public class MainFireAlarmActivity extends FragmentActivity {
             currIndex = index;
             animation.setFillAfter(true);// True:图片停在动画结束位置
             animation.setDuration(300);
-            imageView.startAnimation(animation);
 
             switch (index) {
                 case 0:
-                    voiceAnswer.setTextColor(selectedColor);
-                    healthPedia.setTextColor(unSelectedColor);
-                    pDected.setTextColor(unSelectedColor);
-
-                    opa.setBackgroundColor(c_opa);
-                    opb.setBackgroundColor(selectedColor);
-                    opc.setBackgroundColor(selectedColor);
-
+                    setBottomTextColor(0);
                     break;
                 case 1:
-                    healthPedia.setTextColor(selectedColor);
-                    voiceAnswer.setTextColor(unSelectedColor);
-                    pDected.setTextColor(unSelectedColor);
-
-                    opa.setBackgroundColor(selectedColor);
-                    opb.setBackgroundColor(c_opa);
-                    opc.setBackgroundColor(selectedColor);
-
+                    setBottomTextColor(1);
                     break;
                 case 2:
-                    pDected.setTextColor(selectedColor);
-                    voiceAnswer.setTextColor(unSelectedColor);
-                    healthPedia.setTextColor(unSelectedColor);
-
-                    opa.setBackgroundColor(selectedColor);
-                    opb.setBackgroundColor(selectedColor);
-                    opc.setBackgroundColor(c_opa);
-
+                    setBottomTextColor(2);
                     break;
             }
         }
@@ -310,5 +279,45 @@ public class MainFireAlarmActivity extends FragmentActivity {
 
             }
         }
+    }
+
+
+    private void setBottomTextColor(int position) {
+        opa.setTextColor(getResources().getColor(R.color.gray_bold));
+        opb.setTextColor(getResources().getColor(R.color.gray_bold));
+        opc.setTextColor(getResources().getColor(R.color.gray_bold));
+        Drawable d1 = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_NORMAL_IDS[0]);
+
+        d1.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+        opa.setCompoundDrawables(null, d1, null, null);
+        Drawable d2 = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_NORMAL_IDS[1]);
+        d2.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+        opb.setCompoundDrawables(null, d2, null, null);
+        Drawable d3 = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_NORMAL_IDS[2]);
+        d3.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+        opc.setCompoundDrawables(null, d3, null, null);
+        switch (position) {
+            case 0:
+                Drawable dz = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_ACTIVE_IDS[0]);
+                dz.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+                opa.setTextColor(getResources().getColor(R.color.text_blue));
+                opa.setCompoundDrawables(null, dz, null, null);
+                break;
+            case 1:
+                Drawable dz1 = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_ACTIVE_IDS[1]);
+                dz1.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+                opb.setTextColor(getResources().getColor(R.color.text_blue));
+                opb.setCompoundDrawables(null, dz1, null, null);
+                break;
+            case 2:
+                Drawable dz2 = DrawableUtil.getDrawable(MainFireAlarmActivity.this, TAB_ICON_ACTIVE_IDS[2]);
+                dz2.setBounds(0, 0, mBottomDrawableSize, mBottomDrawableSize);
+                opc.setTextColor(getResources().getColor(R.color.text_blue));
+                opc.setCompoundDrawables(null, dz2, null, null);
+                break;
+            default:
+                break;
+        }
+
     }
 }
