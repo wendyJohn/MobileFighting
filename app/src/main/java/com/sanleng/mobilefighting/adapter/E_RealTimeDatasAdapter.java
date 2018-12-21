@@ -20,6 +20,7 @@ import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.bean.ERealTimeDataBean;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 智能电气火灾实时数据适配器
@@ -28,30 +29,22 @@ import java.util.List;
  */
 public class E_RealTimeDatasAdapter extends BaseAdapter {
 
-    private List<ERealTimeDataBean> mList;
     private Context mContext;
-    private Handler handler;
+    private List<Map<String, Object>> list;
 
-
-    public E_RealTimeDatasAdapter(Context mContext, List<ERealTimeDataBean> mList) {
-        super();
-        this.mList = mList;
+    /**
+     * bindData用来传递数据给适配器。
+     *
+     * @param list
+     */
+    public void bindData(Context mContext, List<Map<String, Object>> list) {
+        this.list = list;
         this.mContext = mContext;
     }
-//    /**
-//     * bindData用来传递数据给适配器。
-//     *
-//     * @list
-//     */
-//    public void bindData(Context mContext, List<ERealTimeDataBean> mList, Handler handler) {
-//        this.mContext = mContext;
-//        this.mList = mList;
-//        this.handler = handler;
-//    }
 
     @Override
     public int getCount() {
-        return mList.size();
+        return list.size();
 
     }
 
@@ -69,9 +62,8 @@ public class E_RealTimeDatasAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder holder;
-
         if (convertView == null) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.e_realtimedatas_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.e_realtimedatas_item, parent, false);
             holder = new Holder();
             holder.address = (TextView) convertView.findViewById(R.id.w_address);
             holder.temperature = (TextView) convertView.findViewById(R.id.temperature);
@@ -86,17 +78,17 @@ public class E_RealTimeDatasAdapter extends BaseAdapter {
         RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.RESOURCE);
         Glide.with(mContext).load(R.drawable.ealarm).apply(options).into(holder.temperaturealarm);
 
-        String state = mList.get(position).getState();
-        holder.address.setText(mList.get(position).getAddress());
-        holder.temperature.setText(mList.get(position).getTemperature());
+        String state = list.get(position).get("state").toString();
+        holder.address.setText(list.get(position).get("equipmentName").toString());
+        holder.temperature.setText(list.get(position).get("position").toString());
 
-        if (state.equals("无报警")) {
+        if (state.equals("0")) {
             holder.temperaturealarm.setVisibility(View.GONE);
             holder.temperature.setTextColor(mContext.getResources().getColor(R.color.text_blue));
             holder.temperaturealarms.setVisibility(View.VISIBLE);
             holder.temperaturealarms.setBackground(mContext.getResources().getDrawable(R.drawable.ealarms));
         }
-        if (state.equals("有报警")) {
+        if (state.equals("1")) {
             holder.temperaturealarm.setVisibility(View.VISIBLE);
             holder.temperaturealarms.setVisibility(View.GONE);
             holder.temperature.setTextColor(mContext.getResources().getColor(R.color.red));

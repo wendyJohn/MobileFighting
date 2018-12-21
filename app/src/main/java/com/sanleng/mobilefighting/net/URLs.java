@@ -6,8 +6,8 @@ package com.sanleng.mobilefighting.net;
 public class URLs {
 
     //云平台地址
-    //public static String HOST_IP = "47.100.192.169";
-    //public static String HOST_PORT = "8080";
+//    public static String HOST_IP = "47.100.192.169";
+//    public static String HOST_PORT = "8080";
 
     //调试地址
     public static String HOST_IP = "10.101.80.113";
@@ -70,4 +70,11 @@ public class URLs {
     public static String MaterialDetails_URL = HOST + "/kspf/app/station/detail";
     // 密码修改
     public static String PasswordModification = HOST + "/kspf/app/user/appPassChange";
+    // 电气火灾点位列表
+    public static String PointPosition_URL = HOST + "/kspf/app/gsm/list";
+    // 电气火灾报警列表
+    public static String Police_URL = HOST + "/kspf/app/gsm/recordlist";
+    // 电气火灾状态修改
+    public static String ElectricalFire_URL = HOST + "/kspf/app/gsm/update";
+
 }

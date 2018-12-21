@@ -1,18 +1,13 @@
 package com.sanleng.mobilefighting.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sanleng.mobilefighting.R;
-import com.sanleng.mobilefighting.bean.ArchitectureBean;
-import com.sanleng.mobilefighting.util.ImageDown;
-import com.sanleng.mobilefighting.util.ImageDown.ImageCallBack;
 
 import java.util.List;
 import java.util.Map;
@@ -26,21 +21,15 @@ public class AlarmAdapter extends BaseAdapter {
     private Context context;
     private List<Map<String, Object>> list;
 
-    public AlarmAdapter(Context context, List<Map<String, Object>> list) {
-        super();
+    /**
+     * bindData用来传递数据给适配器。
+     *
+     * @param list
+     */
+    public void bindData(Context context, List<Map<String, Object>> list) {
         this.list = list;
         this.context = context;
     }
-
-//    /**
-//     * bindData用来传递数据给适配器。
-//     *
-//     * @param list
-//     */
-//    public void bindData(Context context, List<Map<String, Object>> list) {
-//        this.list = list;
-//        this.context = context;
-//    }
 
     @Override
     public int getCount() {

@@ -11,29 +11,29 @@
 
     <permission
         android:name="com.permissions.MY_BROADCAST"
-        android:protectionLevel="signature"></permission>
+        android:protectionLevel="signature" />
 
     <uses-permission android:name="com.permissions.MY_BROADCASTS" />
 
     <permission
         android:name="com.permissions.MY_BROADCASTS"
-        android:protectionLevel="signature"></permission>
+        android:protectionLevel="signature" />
 
 
-    <permission android:name="android.permission.BAIDU_LOCATION_SERVICE"></permission>
+    <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
 
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
-        tools:ignore="ProtectedPermissions"></uses-permission>
+        tools:ignore="ProtectedPermissions" />
 
     <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.sanleng.mobilefighting.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- 二维码权限 -->
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -46,7 +46,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <!-- 这个权限用于进行网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
     <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
@@ -104,33 +104,33 @@
             android:name="com.sanleng.mobilefighting.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!-- 主界面 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 测试主界面 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MainTabActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!-- 测试添加应用 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 首頁 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.ManagementCenterActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!-- 监控 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MonitorCenterActivity"
@@ -226,25 +226,33 @@
             android:name="com.sanleng.mobilefighting.activity.RectificationActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!-- 隐患上传 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.RectificationitemActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!-- 应急站 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.MonStationActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- 应急救援-->
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.EmergencyRescueActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan" />
+
         <!--密码修改 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.PwdChangeActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 电气火灾建筑列表 -->
         <activity

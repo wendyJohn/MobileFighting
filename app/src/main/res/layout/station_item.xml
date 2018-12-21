@@ -21,6 +21,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
+            android:visibility="gone"
             android:background="@drawable/e_realtimedata" />
 
         <LinearLayout
@@ -34,11 +35,11 @@
             android:visibility="visible">
 
             <TextView
-                android:id="@+id/w_address"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="设备名称"
+                android:text="应急站A"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_15" />
         </LinearLayout>
@@ -49,47 +50,48 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dress_youta"
             android:layout_alignLeft="@+id/dress_youta"
-            android:layout_toLeftOf="@+id/yout_ic"
             android:background="@xml/setting_item_selector"
             android:visibility="visible">
 
             <TextView
-                android:id="@+id/temperature"
+                android:id="@+id/address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="3dp"
-                android:layout_weight="1"
-                android:text="地址："
+                android:layout_marginBottom="6dp"
+                android:layout_weight="2"
+                android:text="地址"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
 
+            <LinearLayout
+                android:id="@+id/yout_ic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center">
 
+                <ImageView
+                    android:layout_width="@dimen/font_size_20"
+                    android:layout_height="@dimen/font_size_22"
+                    android:background="@drawable/ic_mark"
+                    />
+                <TextView
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1m"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_13" />
+
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/yout_ic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/temperaturealarm"
-                android:layout_width="@dimen/font_size_26"
-                android:layout_height="@dimen/font_size_28"
-                android:visibility="gone"
-                />
-
-            <ImageView
-                android:id="@+id/temperaturealarms"
-                android:layout_width="@dimen/font_size_26"
-                android:layout_height="@dimen/font_size_28"
-                android:visibility="gone"
-                />
-        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

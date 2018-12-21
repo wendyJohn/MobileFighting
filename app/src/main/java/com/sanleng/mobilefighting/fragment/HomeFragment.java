@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.loopj.android.http.RequestParams;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.activity.ArticleActivity;
+import com.sanleng.mobilefighting.activity.EmergencyRescueActivity;
 import com.sanleng.mobilefighting.activity.FireAlarmActivity;
 import com.sanleng.mobilefighting.activity.HostMonitoringActivity;
 import com.sanleng.mobilefighting.activity.InspectingAssistantActivity;
@@ -233,7 +234,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //
                 }
                 if (name.equals("应急站")) {
-                    Intent intent_monstation = new Intent(getActivity(), MonStationActivity.class);
+                    //EmergencyRescueActivity  MonStationActivity
+                    Intent intent_monstation = new Intent(getActivity(), EmergencyRescueActivity.class);
                     startActivity(intent_monstation);
                 }
                 if (name.equals("网格管理")) {

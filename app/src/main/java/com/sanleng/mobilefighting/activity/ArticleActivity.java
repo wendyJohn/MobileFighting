@@ -56,7 +56,7 @@ public class ArticleActivity extends Activity {
     private int allpage;
     private boolean is_divPage;// 是否进行分页操作
     private boolean finish = true;// 是否加载完成;
-    private RelativeLayout r_back;// 是否加载完成;
+    private RelativeLayout r_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,6 +27,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
+            android:visibility="gone"
             android:background="@drawable/query" />
     </RelativeLayout>
 
@@ -213,7 +214,7 @@
     </LinearLayout>
 
     <View
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="#CFCFCF" />
 
@@ -226,15 +227,14 @@
         android:divider="#dddbdb"
         android:dividerHeight="1.0px"
         android:drawSelectorOnTop="false"
-        android:listSelector="@android:color/transparent"></ListView>
+        android:listSelector="@android:color/transparent" />
 
     <TextView
         android:id="@+id/nodata"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:gravity="center"
+        android:layout_gravity="center_horizontal"
         android:text="没有更多数据了哦~"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/text_size_16" />

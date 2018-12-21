@@ -45,6 +45,7 @@ public class DeviceActivity extends Activity {
 	private DeviceAdapter deviceAdapter;
 	private String build_id;
 	private String floor_id;
+
 	@Override
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub

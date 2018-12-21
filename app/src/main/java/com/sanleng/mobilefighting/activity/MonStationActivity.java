@@ -14,8 +14,7 @@ import com.sanleng.mobilefighting.adapter.FunctionAdapter;
 import com.sanleng.mobilefighting.myview.MyGridView;
 
 /**
- * 应急站
- *
+ *应急站
  * @author 作者 : Qiaoshi
  *
  */
