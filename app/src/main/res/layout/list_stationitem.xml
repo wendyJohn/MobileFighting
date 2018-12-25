@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="220dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -31,7 +31,7 @@
             android:layout_height="1px"
             android:background="#CFCFCF" />
 
-        <ListView
+        <com.sanleng.mobilefighting.myview.LinearLayoutForListView
             android:id="@+id/stationlistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,7 +40,7 @@
             android:divider="#dddbdb"
             android:dividerHeight="1.0px"
             android:drawSelectorOnTop="false"
-            android:listSelector="@android:color/transparent"></ListView>
+            android:listSelector="@android:color/transparent"></com.sanleng.mobilefighting.myview.LinearLayoutForListView>
 
         <TextView
             android:id="@+id/nodata"
@@ -49,6 +49,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
+            android:layout_gravity="center_horizontal"
             android:text="没有更多数据了哦~"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_size_13" />

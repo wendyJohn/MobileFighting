@@ -412,7 +412,8 @@ public class E_RealTimeDataFragment extends BaseFragment implements OnClickListe
         RequestParams params = new RequestParams();
         params.put("ids", ids);
         params.put("state", "0");
-
+        params.put("username", PreferenceUtils.getString(getActivity(), "MobileFig_username"));
+        params.put("platformkey", "app_firecontrol_owner");
         RequestUtils.ClientPost(URLs.ElectricalFire_URL, params, new NetCallBack() {
             @Override
             public void onStart() {
@@ -424,6 +425,8 @@ public class E_RealTimeDataFragment extends BaseFragment implements OnClickListe
                 if (result == null || result.length() == 0) {
                     return;
                 }
+                System.out.println("====================================="+result);
+
 
             }
 

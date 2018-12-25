@@ -60,7 +60,7 @@ public class MyReceiver extends BroadcastReceiver {
 				myintent.putExtra("str_test", str_test);
 				context.sendBroadcast(myintent, BROADCAST_PERMISSION_DISC);
 
-//
+
 //				 intent.setAction(BROADCAST_ACTION_DISC); //设置你这个广播的action，只有和这个action一样的接受者才能接受者才能接收广播
 //				 sendBroadcast(intent); //发送广播
 

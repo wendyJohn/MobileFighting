@@ -124,6 +124,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.sanleng.mobilefighting.activity.WNaviGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan" />
 
         <!-- 首頁 -->
         <activity
@@ -399,7 +404,7 @@
             android:permission="android.permission.BAIDU_LOCATION_SERVICE"
             android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v5.0.0"></action>
+                <action android:name="com.baidu.location.service_v5.2.1"></action>
             </intent-filter>
         </service>
 

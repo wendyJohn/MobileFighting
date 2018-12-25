@@ -101,11 +101,11 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
                 login_number.setText(lastAccount);
                 login_password.setText(lastPwd);
 
-                Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
-                startActivity(intent_pwdchange);
-
-//                Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+//                Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
 //                startActivity(intent_pwdchange);
+
+                Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                startActivity(intent_pwdchange);
 
                 finish();
             }
@@ -169,11 +169,11 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
                                 new Handler().postDelayed(new Runnable() {
                                     public void run() {
                                         // 等待2000毫秒后销毁此页面，并提示登陆成功
-                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
-                                        startActivity(intent_pwdchange);
-
-//                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+//                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainFireAlarmActivity.class);
 //                                        startActivity(intent_pwdchange);
+
+                                        Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
+                                        startActivity(intent_pwdchange);
 
                                         finish();
                                     }

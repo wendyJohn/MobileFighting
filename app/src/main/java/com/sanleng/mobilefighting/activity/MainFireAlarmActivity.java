@@ -1,11 +1,18 @@
 package com.sanleng.mobilefighting.activity;
 
+import android.annotation.SuppressLint;
+import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +32,7 @@ import com.nightonke.boommenu.BoomMenuButton;
 import com.nightonke.boommenu.ButtonEnum;
 import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.sanleng.mobilefighting.R;
+import com.sanleng.mobilefighting.dialog.NoticeDialog;
 import com.sanleng.mobilefighting.fragment.AlarmRecordFragment;
 import com.sanleng.mobilefighting.fragment.E_RealTimeDataFragment;
 import com.sanleng.mobilefighting.fragment.NewMineFragment;
@@ -33,6 +41,9 @@ import com.sanleng.mobilefighting.util.DrawableUtil;
 
 import org.xclcharts.common.DensityUtil;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +75,7 @@ public class MainFireAlarmActivity extends FragmentActivity {
     private BoomMenuButton bmb;
     private RadioButton opa, opb, opc;
     private int mBottomDrawableSize;
+    private NoticeDialog noticeDialog;
     // 默认图片
     private static final int[] TAB_ICON_NORMAL_IDS = new int[] { R.drawable.emergencya_on,
             R.drawable.emergencyb_on, R.drawable.emergencyc_on };
@@ -76,6 +88,11 @@ public class MainFireAlarmActivity extends FragmentActivity {
         super.onCreate(arg0);
         this.setContentView(R.layout.mainfirealarmactivity);
         initview();
+        // 消息通知栏是否打开
+        if (isNotificationEnabled(MainFireAlarmActivity.this) == false) {
+            noticeDialog = new NoticeDialog(MainFireAlarmActivity.this, m_handler);
+            noticeDialog.show();
+        }
     }
 
     private void initview() {
@@ -320,4 +337,76 @@ public class MainFireAlarmActivity extends FragmentActivity {
         }
 
     }
+    //判断消息通知栏是否打开
+    private boolean isNotificationEnabled(Context context) {
+        String CHECK_OP_NO_THROW = "checkOpNoThrow";
+        String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
+
+        AppOpsManager mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
+        ApplicationInfo appInfo = context.getApplicationInfo();
+        String pkg = context.getApplicationContext().getPackageName();
+        int uid = appInfo.uid;
+
+        Class appOpsClass = null;
+        /* Context.APP_OPS_MANAGER */
+        try {
+            appOpsClass = Class.forName(AppOpsManager.class.getName());
+            Method checkOpNoThrowMethod = appOpsClass.getMethod(CHECK_OP_NO_THROW, Integer.TYPE, Integer.TYPE,
+                    String.class);
+            Field opPostNotificationValue = appOpsClass.getDeclaredField(OP_POST_NOTIFICATION);
+
+            int value = (Integer) opPostNotificationValue.get(Integer.class);
+            return ((Integer) checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg) == AppOpsManager.MODE_ALLOWED);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler m_handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 76565:
+                    goToNotificationSetting(MainFireAlarmActivity.this);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    };
+
+    /**
+     * 打开允许通知的设置页
+     */
+    private void goToNotificationSetting(Context context) {
+        Intent intent = new Intent();
+        if (Build.VERSION.SDK_INT >= 26) {
+            // android 8.0引导
+            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+            intent.putExtra("android.provider.extra.APP_PACKAGE", context.getPackageName());
+        } else if (Build.VERSION.SDK_INT >= 21) {
+            // android 5.0-7.0
+            intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+            intent.putExtra("app_package", context.getPackageName());
+            intent.putExtra("app_uid", context.getApplicationInfo().uid);
+        } else {
+            // 其他
+            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
 }
