@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.loopj.android.http.RequestParams;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.activity.AlarmRecordActivity;
+import com.sanleng.mobilefighting.adapter.E_RealTimeDataAdapter;
 import com.sanleng.mobilefighting.adapter.E_RealTimeDatasAdapter;
 import com.sanleng.mobilefighting.bean.ERealTimeDataBean;
 import com.sanleng.mobilefighting.myview.MarqueeViews;
@@ -48,7 +49,7 @@ public class E_RealTimeDataFragment extends BaseFragment implements OnClickListe
 
     private ListView e_realtimedatalslistview;
 
-//    private E_RealTimeDataAdapter e_realtimedataAdapter;//(有数据版)
+    private E_RealTimeDataAdapter e_realtimedataAdapter;//(有数据版)
 
     private E_RealTimeDatasAdapter e_realtimedatasAdapter;//(无数据版)
 
@@ -94,68 +95,68 @@ public class E_RealTimeDataFragment extends BaseFragment implements OnClickListe
         e_realtimedatasAdapter = new E_RealTimeDatasAdapter();
         marqueeviews = (MarqueeViews) view.findViewById(R.id.marqueeviews);
 
-//        list = new ArrayList<>();
-//        ERealTimeDataBean beana = new ERealTimeDataBean();
-//        beana.setAddress("南京工程学院A栋一层配电箱");
-//        beana.setTemperature("当前温度：20℃");
-//        beana.setTemperaturelimit("限值：0～100℃");
-//        beana.setResidualcurrent("剩余电流：20MA");
-//        beana.setCurrentlimit("限值：30～100MA");
-//        beana.setState("有报警");
-//        beana.setNumber("10");
-//        list.add(beana);
-//
-//        ERealTimeDataBean beanb = new ERealTimeDataBean();
-//        beanb.setAddress("南京工程学院A栋二层配电箱");
-//        beanb.setTemperature("当前温度：20℃");
-//        beanb.setTemperaturelimit("限值：0～100℃");
-//        beanb.setResidualcurrent("剩余电流：20MA");
-//        beanb.setCurrentlimit("限值：30～100MA");
-//        beanb.setState("无报警");
-//        beanb.setNumber("0");
-//        list.add(beanb);
-//
-//        ERealTimeDataBean beanc = new ERealTimeDataBean();
-//        beanc.setAddress("南京工程学院A栋三层配电箱");
-//        beanc.setTemperature("当前温度：20℃");
-//        beanc.setTemperaturelimit("限值：0～100℃");
-//        beanc.setResidualcurrent("剩余电流：20MA");
-//        beanc.setCurrentlimit("限值：30～100MA");
-//        beanc.setState("有报警");
-//        beanc.setNumber("10");
-//        list.add(beanc);
-//
-//        ERealTimeDataBean beand = new ERealTimeDataBean();
-//        beand.setAddress("南京工程学院A栋四层配电箱");
-//        beand.setTemperature("当前温度：20℃");
-//        beand.setTemperaturelimit("限值：0～100℃");
-//        beand.setResidualcurrent("剩余电流：20MA");
-//        beand.setCurrentlimit("限值：30～100MA");
-//        beand.setState("无报警");
-//        beand.setNumber("0");
-//        list.add(beand);
-//
-//        ERealTimeDataBean beane = new ERealTimeDataBean();
-//        beane.setAddress("南京工程学院A栋五层配电箱");
-//        beane.setTemperature("当前温度：20℃");
-//        beane.setTemperaturelimit("限值：0～100℃");
-//        beane.setResidualcurrent("剩余电流：20MA");
-//        beane.setCurrentlimit("限值：30～100MA");
-//        beane.setState("有报警");
-//        beane.setNumber("10");
-//        list.add(beane);
+        list = new ArrayList<>();
+        ERealTimeDataBean beana = new ERealTimeDataBean();
+        beana.setAddress("南京工程学院A栋一层配电箱");
+        beana.setTemperature("当前温度：20℃");
+        beana.setTemperaturelimit("限值：0～100℃");
+        beana.setResidualcurrent("剩余电流：20MA");
+        beana.setCurrentlimit("限值：30～100MA");
+        beana.setState("有报警");
+        beana.setNumber("10");
+        list.add(beana);
 
-//        e_realtimedatalslistview = view.findViewById(R.id.realtimedatalslistview);
-////        e_realtimedataAdapter = new E_RealTimeDataAdapter(getActivity(), list, mHandler);
-////      e_realtimedatasAdapter = new E_RealTimeDatasAdapter(getActivity(), list);
-//        e_realtimedatalslistview.setAdapter(e_realtimedatasAdapter);
-//        e_realtimedatalslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getActivity(), AlarmRecordActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        ERealTimeDataBean beanb = new ERealTimeDataBean();
+        beanb.setAddress("南京工程学院A栋二层配电箱");
+        beanb.setTemperature("当前温度：20℃");
+        beanb.setTemperaturelimit("限值：0～100℃");
+        beanb.setResidualcurrent("剩余电流：20MA");
+        beanb.setCurrentlimit("限值：30～100MA");
+        beanb.setState("无报警");
+        beanb.setNumber("0");
+        list.add(beanb);
+
+        ERealTimeDataBean beanc = new ERealTimeDataBean();
+        beanc.setAddress("南京工程学院A栋三层配电箱");
+        beanc.setTemperature("当前温度：20℃");
+        beanc.setTemperaturelimit("限值：0～100℃");
+        beanc.setResidualcurrent("剩余电流：20MA");
+        beanc.setCurrentlimit("限值：30～100MA");
+        beanc.setState("有报警");
+        beanc.setNumber("10");
+        list.add(beanc);
+
+        ERealTimeDataBean beand = new ERealTimeDataBean();
+        beand.setAddress("南京工程学院A栋四层配电箱");
+        beand.setTemperature("当前温度：20℃");
+        beand.setTemperaturelimit("限值：0～100℃");
+        beand.setResidualcurrent("剩余电流：20MA");
+        beand.setCurrentlimit("限值：30～100MA");
+        beand.setState("无报警");
+        beand.setNumber("0");
+        list.add(beand);
+
+        ERealTimeDataBean beane = new ERealTimeDataBean();
+        beane.setAddress("南京工程学院A栋五层配电箱");
+        beane.setTemperature("当前温度：20℃");
+        beane.setTemperaturelimit("限值：0～100℃");
+        beane.setResidualcurrent("剩余电流：20MA");
+        beane.setCurrentlimit("限值：30～100MA");
+        beane.setState("有报警");
+        beane.setNumber("10");
+        list.add(beane);
+
+        e_realtimedatalslistview = view.findViewById(R.id.realtimedatalslistview);
+        e_realtimedataAdapter = new E_RealTimeDataAdapter(getActivity(), list, mHandler);
+//      e_realtimedatasAdapter = new E_RealTimeDatasAdapter(getActivity(), list);
+        e_realtimedatalslistview.setAdapter(e_realtimedataAdapter);
+        e_realtimedatalslistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), AlarmRecordActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -163,7 +164,7 @@ public class E_RealTimeDataFragment extends BaseFragment implements OnClickListe
     public void onResume() {
         allList = new ArrayList<Map<String, Object>>();
         pageNo = 1;
-        AddPointPosition(1);
+//        AddPointPosition(1);
         AddPolice(1);
         super.onResume();
     }

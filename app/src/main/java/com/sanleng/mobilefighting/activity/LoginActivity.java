@@ -105,7 +105,7 @@ public class LoginActivity extends Activity implements OnClickListener, TextWatc
 //                startActivity(intent_pwdchange);
 
                 Intent intent_pwdchange = new Intent(LoginActivity.this, MainTabActivity.class);
-                startActivity(intent_pwdchange);
+              startActivity(intent_pwdchange);
 
                 finish();
             }

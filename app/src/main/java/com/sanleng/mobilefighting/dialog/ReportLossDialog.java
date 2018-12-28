@@ -90,7 +90,7 @@ public class ReportLossDialog extends Dialog implements android.view.View.OnClic
 			case R.id.notice:
 				if ("".equals(info_editText.getText().toString().trim())
 						|| info_editText.getText().toString().trim() == null) {
-					Toast.makeText(context, "报损说明不能为空", 0).show();
+					Toast.makeText(context, "报损说明不能为空", Toast.LENGTH_SHORT).show();
 				} else {
 					Message mymsg = new Message();
 					Bundle data = new Bundle();
@@ -98,7 +98,7 @@ public class ReportLossDialog extends Dialog implements android.view.View.OnClic
 					data.putString("stationAddress", stationAddress);
 					data.putString("stationId", stationId);
 					data.putString("stationName", stationName);
-					data.putString("storageLocation", storageLocation);
+					data.putString("storageLocation", "emergencystation_break");
 					data.putString("reason", info_editText.getText().toString().trim());
 					mymsg.setData(data);
 					mymsg.what = 35268;

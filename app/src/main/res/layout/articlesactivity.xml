@@ -3,18 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/text_blue" >
+        android:background="@color/text_blue">
 
         <RelativeLayout
             android:id="@+id/r_back"
             android:layout_width="50dp"
             android:layout_height="55dp"
-            android:background="@color/text_blue" >
+            android:background="@color/text_blue">
 
             <ImageView
                 android:id="@+id/tl_back"
@@ -46,13 +48,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
             android:layout_marginTop="6dp"
+            android:layout_marginBottom="2dp"
             android:drawableLeft="@drawable/labelc"
             android:text="设备名称"
             android:textColor="@color/black"
@@ -69,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -162,7 +164,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
@@ -193,7 +195,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"

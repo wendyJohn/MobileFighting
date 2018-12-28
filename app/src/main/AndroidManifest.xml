@@ -258,6 +258,13 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
+        <!--车辆导航 -->
+        <activity
+            android:name="com.sanleng.mobilefighting.baidumap.DemoGuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan" />
+
 
         <!-- 电气火灾建筑列表 -->
         <activity

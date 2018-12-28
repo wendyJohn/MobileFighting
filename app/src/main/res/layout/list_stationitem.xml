@@ -2,18 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="220dp"
+    android:background="#00000000"
+    android:weightSum="1"
+   >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/gray_thin">
+            android:background="@color/white"
+           >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -22,7 +26,7 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="附近应急站"
-                android:textColor="@color/gray_bold"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_size_13" />
         </RelativeLayout>
 
@@ -31,16 +35,16 @@
             android:layout_height="1px"
             android:background="#CFCFCF" />
 
-        <com.sanleng.mobilefighting.myview.LinearLayoutForListView
+        <ListView
             android:id="@+id/stationlistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_thin"
+            android:background="#00000000"
             android:cacheColorHint="#00000000"
             android:divider="#dddbdb"
             android:dividerHeight="1.0px"
             android:drawSelectorOnTop="false"
-            android:listSelector="@android:color/transparent"></com.sanleng.mobilefighting.myview.LinearLayoutForListView>
+            android:listSelector="@android:color/transparent" />
 
         <TextView
             android:id="@+id/nodata"
@@ -48,8 +52,8 @@
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:gravity="center"
             android:layout_gravity="center_horizontal"
+            android:gravity="center"
             android:text="没有更多数据了哦~"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_size_13" />

@@ -66,7 +66,6 @@ public class StationAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.station_item, null);
             holder = new Holder();
             holder.name = (TextView) convertView.findViewById(R.id.name);
-            holder.address = (TextView) convertView.findViewById(R.id.address);
             holder.distance = (TextView) convertView.findViewById(R.id.distance);
 
             convertView.setTag(holder);
@@ -75,15 +74,13 @@ public class StationAdapter extends BaseAdapter {
         }
 
         holder.name.setText(mList.get(position).getName());
-        holder.address.setText(mList.get(position).getAddress());
-        holder.distance.setText(mList.get(position).getDistance());
+        holder.distance.setText(mList.get(position).getDistance()+ "m");
 
         return convertView;
     }
 
     class Holder {
         TextView name;
-        TextView address;
         TextView distance;
 
     }

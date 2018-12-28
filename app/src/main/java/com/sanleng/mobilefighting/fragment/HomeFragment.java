@@ -194,6 +194,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("HandlerLeak")
     public Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {

@@ -9,7 +9,6 @@
         android:id="@+id/imageView_item"
         android:layout_width="match_parent"
         android:background="@drawable/e_firealarm"
-        android:layout_height="120dp" />
-
+        android:layout_height="160dp" />
 
 </LinearLayout>

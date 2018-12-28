@@ -90,7 +90,7 @@ public class OutofStockDialog extends Dialog implements android.view.View.OnClic
 				data.putString("stationAddress", stationAddress);
 				data.putString("stationId", stationId);
 				data.putString("stationName", stationName);
-				data.putString("storageLocation", storageLocation);
+				data.putString("storageLocation", "emergencystation_out");
 				mymsg.setData(data);
 				mymsg.what = 35267;
 				mHandler.sendMessage(mymsg);

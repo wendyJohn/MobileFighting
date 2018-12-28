@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -38,41 +38,190 @@
             android:textSize="16sp" />
     </RelativeLayout>
 
-    <ScrollView
+
+    <FrameLayout
+        android:id="@+id/fragmentlout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/yout_r"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <include
+            android:id="@+id/mapviewitem"
+            layout="@layout/list_mapviewnitem" />
+
+        <include
+            android:id="@+id/stationitem"
+            layout="@layout/list_stationitem" />
+
+    </FrameLayout>
+
+    <com.yinglan.scrolllayout.ScrollLayout
+        android:id="@+id/scroll_down_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <include
-                android:id="@+id/videoitem"
-                android:visibility="gone"
-                layout="@layout/list_videoitem" />
-
-            <View
+            android:layout_height="match_parent">
+            <com.yinglan.scrolllayout.content.ContentListView
+                android:id="@+id/list_view"
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#CFCFCF" />
-
-            <include
-                android:id="@+id/stationitem"
-                layout="@layout/list_stationitem" />
-
-            <View
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="1.0px"
+                android:drawSelectorOnTop="false"
+                android:listSelector="@android:color/transparent"
+                android:layout_below="@id/foot"
+                android:background="@color/gray_thin" />
+            <RelativeLayout
+                android:id="@+id/foot"
                 android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="#CFCFCF" />
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
-            <com.baidu.mapapi.map.MapView
-                android:id="@+id/bmapView"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:background="@color/white"
-                android:clickable="true" />
-        </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/r_yout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@xml/setting_item_selector">
 
-    </ScrollView>
-</LinearLayout>
+                    <ImageView
+                        android:id="@+id/my_pic"
+                        android:layout_width="@dimen/widget_size_40"
+                        android:layout_height="@dimen/widget_size_40"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/e_realtimedata"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    <LinearLayout
+                        android:id="@+id/dress_youta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_toRightOf="@+id/my_pic"
+                        android:background="@xml/setting_item_selector"
+                        android:visibility="visible"
+                        tools:ignore="RtlHardcoded">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="站点名称"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/text_size_15" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/dress_yout"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/dress_youta"
+                        android:layout_alignLeft="@+id/dress_youta"
+                        android:background="@xml/setting_item_selector"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/address"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2"
+                            android:text="站点地址"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_13" />
+
+                        <LinearLayout
+                            android:id="@+id/yout_ic"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/font_size_20"
+                                android:layout_height="@dimen/font_size_22"
+                                android:background="@drawable/ic_mark" />
+
+                            <TextView
+                                android:id="@+id/distance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="距您10m"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_13" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/viewa"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/r_yout"
+                    android:background="@color/normal_bg_color" />
+
+                <RelativeLayout
+                    android:id="@+id/viewdetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/viewa"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/emergencyb_on" />
+
+                    <TextView
+                        android:id="@+id/walkingnavigation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/select_realdata_but"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/navigation_ic"
+                        android:text="步行导航"
+                        android:layout_marginRight="10dp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/image"
+                        android:gravity="center"
+                        android:text="查看详情"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </com.yinglan.scrolllayout.ScrollLayout>
+
+</RelativeLayout>

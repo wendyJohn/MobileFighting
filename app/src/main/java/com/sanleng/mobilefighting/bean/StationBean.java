@@ -11,9 +11,13 @@ public class StationBean implements Serializable {
     private String name;
     private String id;
     private String address;
-    private String distance;
+    private double distance;
     private double E_mylatitude;
     private double E_mylongitude;
+    private String number;
+    private String image_type;
+
+    private int type;//布局样式
 
     public String getName() {
         return name;
@@ -31,11 +35,11 @@ public class StationBean implements Serializable {
         this.id = id;
     }
 
-    public String getDistance() {
+    public double getDistance() {
         return distance;
     }
 
-    public void setDistance(String distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 
@@ -61,5 +65,29 @@ public class StationBean implements Serializable {
 
     public void setE_mylongitude(double e_mylongitude) {
         E_mylongitude = e_mylongitude;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getImage_type() {
+        return image_type;
+    }
+
+    public void setImage_type(String image_type) {
+        this.image_type = image_type;
     }
 }

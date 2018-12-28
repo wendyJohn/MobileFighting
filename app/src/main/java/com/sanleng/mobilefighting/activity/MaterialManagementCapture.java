@@ -154,7 +154,6 @@ public class MaterialManagementCapture extends Activity implements Callback {
                         mHandler);
                 outofStockDialog.show();
             }
-
             if (mode.equals("Reportloss")) {
                 // 报损
                 ReportLossDialog reportLossDialog = new ReportLossDialog(MaterialManagementCapture.this, resultString,

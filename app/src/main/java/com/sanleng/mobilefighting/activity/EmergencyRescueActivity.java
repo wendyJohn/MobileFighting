@@ -1,6 +1,7 @@
 package com.sanleng.mobilefighting.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -8,18 +9,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.MediaController;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ZoomControls;
 
@@ -30,11 +34,13 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.InfoWindow;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
+import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
@@ -43,22 +49,31 @@ import com.baidu.mapapi.walknavi.adapter.IWEngineInitListener;
 import com.baidu.mapapi.walknavi.adapter.IWRoutePlanListener;
 import com.baidu.mapapi.walknavi.model.WalkRoutePlanError;
 import com.baidu.mapapi.walknavi.params.WalkNaviLaunchParam;
+import com.baidu.navisdk.adapter.BNRoutePlanNode;
+import com.baidu.navisdk.adapter.BNRoutePlanNode.CoordinateType;
+import com.baidu.navisdk.adapter.BaiduNaviManagerFactory;
+import com.baidu.navisdk.adapter.IBNRoutePlanManager;
+import com.baidu.navisdk.adapter.IBNTTSManager;
+import com.baidu.navisdk.adapter.IBaiduNaviManager;
 import com.baidu.platform.comapi.walknavi.widget.ArCameraView;
 import com.sanleng.mobilefighting.R;
+import com.sanleng.mobilefighting.adapter.BottomMenuAdapter;
 import com.sanleng.mobilefighting.adapter.StationAdapter;
+import com.sanleng.mobilefighting.baidumap.DemoGuideActivity;
+import com.sanleng.mobilefighting.baidumap.NormalUtils;
 import com.sanleng.mobilefighting.bean.StationBean;
-import com.sanleng.mobilefighting.myview.FullVideoView;
-import com.sanleng.mobilefighting.myview.LinearLayoutForListView;
 import com.sanleng.mobilefighting.net.NetCallBack;
 import com.sanleng.mobilefighting.net.RequestUtils;
 import com.sanleng.mobilefighting.net.URLs;
 import com.sanleng.mobilefighting.util.E_StationDialog;
 import com.sanleng.mobilefighting.util.FireFormationDialog;
+import com.sanleng.mobilefighting.util.ScreenUtil;
 import com.sanleng.mobilefighting.video.activity.MonitorVideoActivity;
+import com.yinglan.scrolllayout.ScrollLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * 应急救援
@@ -70,7 +85,6 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     private BDLocationListener myListener = new MyLocationListener(); // 定位监听
     private double S_mylatitude;// 纬度
     private double S_mylongitude;// 经度
-
     private double E_mylatitude;// 纬度
     private double E_mylongitude;// 经度
     private LocationManager locationManager;
@@ -81,7 +95,7 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     private LatLng latLng;
     private boolean isFirstLoc = true; // 是否首次定位
     BitmapDescriptor bdAs = BitmapDescriptorFactory.fromResource(R.drawable.e_station);//应急站标识
-
+    BitmapDescriptor bdA = BitmapDescriptorFactory.fromResource(R.drawable.ico_sos);//求救标识
     private FireFormationDialog fireFormationDialog;
     private String AlarmTime;
     private String AlarmEquipment;
@@ -91,10 +105,11 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     private E_StationDialog e_stationDialog;
     private List<String> mylist = new ArrayList<>();//应急门的标识
     private RelativeLayout myr_back;
-    private FullVideoView video;
     private static final double EARTH_RADIUS = 6378137.0;
     private List<StationBean> slist;
-    private LinearLayoutForListView stationlistview;
+    private List<StationBean> slistsos;
+    private List<StationBean> slists;//底部菜单选项
+    private ListView stationlistview;
     private StationAdapter stationAdapter;
     WalkNaviLaunchParam walkParam;
     /*导航起终点Marker，可拖动改变起终点的坐标*/
@@ -107,17 +122,38 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     private static boolean isPermissionRequested = false;
     private LatLng startPt, endPt;
 
-    public EmergencyRescueActivity() {
-    }
+    //底部详情菜单
+    private ScrollLayout mScrollLayout;
+    private BottomMenuAdapter bottomMenuAdapter;
+    private RelativeLayout foot;
+    private TextView walkingnavigation;
+    private RelativeLayout viewdetails;
+    private TextView name;
+    private TextView address;
+    private TextView distance;
+    //驾车导航
+    private static final String[] authBaseArr = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+    private static final int authBaseRequestCode = 1;
+    private boolean hasInitSuccess = false;
+    private static final String APP_FOLDER_NAME = "BNSDKSimpleDemo";
+    public static final String ROUTE_PLAN_NODE = "routePlanNode";
+    private String mSDCardPath = null;
+    private BNRoutePlanNode mStartNode = null;
 
     @Override
     protected void onCreate(Bundle arg0) {
         // TODO Auto-generated method stub
         super.onCreate(arg0);
         this.setContentView(R.layout.emergencyrescue_activity);
-        requestPermission();
+        RequestPermission();
         initview();
         initMap();
+        if (initDirs()) {
+            initNavi();
+        }
     }
 
 
@@ -153,7 +189,6 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
         if (child != null && (child instanceof ImageView || child instanceof ZoomControls)) {
             child.setVisibility(View.INVISIBLE);
         }
-        mBaiduMap.setMyLocationEnabled(true);
         // 开启交通图
         mBaiduMap.setTrafficEnabled(true);
         // 开启热力图
@@ -168,10 +203,26 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
         mLocationClient.start();
         // 图片点击事件，回到定位点
         mLocationClient.requestLocation();
-
         mBaiduMap.setOnMarkerClickListener(new BaiduMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker arg0) {
+                // 获得marker中的数据
+                StationBean bean = (StationBean) arg0.getExtraInfo().get("marker");
+                E_mylatitude = bean.getE_mylatitude();
+                E_mylongitude = bean.getE_mylongitude();
+                String ids = bean.getId();
+                String names = bean.getName();
+                String addresss = bean.getAddress();
+                double distances = bean.getDistance();
+                name.setText(names);
+                address.setText(addresss);
+                distance.setText("距您 " + distances + " m");
+                BottomMenu(names, addresss, distances, ids);
+                mScrollLayout.setVisibility(View.VISIBLE);
+
+                LatLng llA = new LatLng(E_mylatitude, E_mylongitude);
+                showInfoWindow(llA, names);
+
                 // 获得marker中的数据
 //                e_stationDialog = new E_StationDialog(EmergencyRescueActivity.this, clickListener,
 //                        AlarmEquipment, AlarmUnit, null, null);
@@ -222,6 +273,7 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
             latLng = new LatLng(location.getLatitude(), location.getLongitude());
             S_mylatitude = location.getLatitude();
             S_mylongitude = location.getLongitude();
+
             // 构造定位数据
             MyLocationData locData = new MyLocationData.Builder().accuracy(location.getRadius())
                     // 此处设置开发者获取到的方向信息，顺时针0-360
@@ -229,7 +281,7 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
             // 设置定位数据
             mBaiduMap.setMyLocationData(locData);
             // 当不需要定位图层时关闭定位图层
-            mBaiduMap.setMyLocationEnabled(false);
+            mBaiduMap.setMyLocationEnabled(true);
             if (isFirstLoc) {
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
@@ -260,8 +312,14 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     @Override
     protected void onResume() {
         super.onResume();
-        setVideo();
-        NearbyEmergencyStation();
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                // 等待1000毫秒后获取数据
+                NearbyEmergencyStation();
+                NearbyEmergencySOS();
+            }
+        }, 1000);
+
         // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
         WalkNavigateHelper.getInstance().resume();
         mMapView.onResume();
@@ -287,37 +345,34 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
         super.onDestroy();
     }
 
-    /**
-     * 设置视频参数
-     */
-    private void setVideo() {
-        video = findViewById(R.id.video);
-        MediaController mediaController = new MediaController(this);
-        mediaController.setVisibility(View.GONE);//隐藏进度条
-        video.setMediaController(mediaController);
-//        File file = new File(Environment.getExternalStorageDirectory() + "/" + "FireVideo", "1542178640266.mp4");
-//        video.setVideoPath(file.getAbsolutePath());
-//        video.start();
-        video.setVideoURI(Uri.parse(URLs.HOST + "/RootFile/Platform/20181114/1542178640266.mp4"));
-        video.start();
-        video.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mediaPlayer.start();
-                mediaPlayer.setLooping(true);
-            }
-        });
-    }
-
     // 初始化数据
     private void initview() {
+        mScrollLayout = (ScrollLayout) findViewById(R.id.scroll_down_layout);
+        name = (TextView) findViewById(R.id.name);
+        address = (TextView) findViewById(R.id.address);
+        distance = (TextView) findViewById(R.id.distance);
+        /**设置 setting*/
+        mScrollLayout.setMinOffset(0);
+        mScrollLayout.setMaxOffset((int) (ScreenUtil.getScreenHeight(EmergencyRescueActivity.this) * 1));
+        mScrollLayout.setExitOffset(ScreenUtil.dip2px(EmergencyRescueActivity.this, 110));
+        mScrollLayout.setIsSupportExit(true);
+        mScrollLayout.setAllowHorizontalScroll(true);
+        mScrollLayout.setOnScrollChangedListener(mOnScrollChangedListener);
+        mScrollLayout.setToExit();
+        mScrollLayout.getBackground().setAlpha(0);
         mMapView = (MapView) findViewById(R.id.bmapView);
+        foot = findViewById(R.id.foot);
+        walkingnavigation = findViewById(R.id.walkingnavigation);
+        viewdetails = findViewById(R.id.viewdetails);
         mylist.add("A");
         mylist.add("B");
         mylist.add("C");
         mylist.add("D");
         myr_back = (RelativeLayout) findViewById(R.id.r_back);
         myr_back.setOnClickListener(this);
+        walkingnavigation.setOnClickListener(this);
+        viewdetails.setOnClickListener(this);
+        foot.setOnClickListener(this);
     }
 
     private static double rad(double d) {
@@ -419,7 +474,23 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
             case R.id.r_back:
                 finish();
                 break;
-
+            // 步行导航
+            case R.id.walkingnavigation:
+                //初始化导航数据
+                initOverlay();
+                startPt = new LatLng(S_mylatitude, S_mylongitude);
+                endPt = new LatLng(E_mylatitude, E_mylongitude);
+                /*构造导航起终点参数对象*/
+                walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
+                walkParam.extraNaviMode(0);
+                startWalkNavi();
+                mBaiduMap.clear();
+                break;
+//                查看详情
+            case R.id.viewdetails:
+                routeplanToNavi(CoordinateType.BD09LL);
+//                mScrollLayout.setToOpen();
+                break;
             default:
                 break;
         }
@@ -429,38 +500,13 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     private void NearbyEmergencyStation() {
         slist = new ArrayList<>();
         StationBean beana = new StationBean();
+        beana.setId("1234567890");
         beana.setName("应急站A");
         beana.setAddress("南京市-江宁区-秣周东路12号");
-        beana.setDistance("10m");
         beana.setE_mylatitude(31.87308);
         beana.setE_mylongitude(118.83488);
-
-        StationBean beanb = new StationBean();
-        beanb.setName("应急站B");
-        beanb.setAddress("南京市-江宁区-秣周东路12号");
-        beanb.setDistance("20m");
-        beanb.setE_mylatitude(31.87308);
-        beanb.setE_mylongitude(118.83488);
-
-        StationBean beanc = new StationBean();
-        beanc.setName("应急站C");
-        beanc.setAddress("南京市-江宁区-秣周东路12号");
-        beanc.setDistance("30m");
-        beanc.setE_mylatitude(31.87308);
-        beanc.setE_mylongitude(118.83488);
-
-        StationBean beand = new StationBean();
-        beand.setName("应急站D");
-        beand.setAddress("南京市-江宁区-秣周东路12号");
-        beand.setDistance("40m");
-        beand.setE_mylatitude(31.87308);
-        beand.setE_mylongitude(118.83488);
-
+        beana.setDistance(gps_m(S_mylatitude, S_mylongitude, 31.87308, 118.83488));
         slist.add(beana);
-        slist.add(beanb);
-        slist.add(beanc);
-        slist.add(beand);
-
         // 构建MarkerOption，用于在地图上添加Marker
         LatLng llA = new LatLng(31.87308, 118.83488);
         MarkerOptions option = new MarkerOptions().position(llA).icon(bdAs);
@@ -481,29 +527,55 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                 E_mylatitude = slist.get(position).getE_mylatitude();
                 E_mylongitude = slist.get(position).getE_mylongitude();
 
-                //初始化导航数据
-                initOverlay();
-                startPt = new LatLng(S_mylatitude, S_mylongitude);
-                endPt = new LatLng(E_mylatitude, E_mylongitude);
-                /*构造导航起终点参数对象*/
-                walkParam = new WalkNaviLaunchParam().stPt(startPt).endPt(endPt);
-                walkParam.extraNaviMode(0);
-                startWalkNavi();
-                mBaiduMap.clear();
+                String ids = slist.get(position).getId();
+                String names = slist.get(position).getName();
+                String addresss = slist.get(position).getAddress();
+                double distances = slist.get(position).getDistance();
+
+                name.setText(names);
+                address.setText(addresss);
+                distance.setText("距您 " + distances + "m");
+
+                ChooseMyLocation(E_mylatitude, E_mylongitude);
+                BottomMenu(names, addresss, distances, ids);
+                mScrollLayout.setVisibility(View.VISIBLE);
+
+                LatLng llA = new LatLng(E_mylatitude, E_mylongitude);
+                showInfoWindow(llA, names);
             }
         });
     }
 
+    //附近的SOS
+    private void NearbyEmergencySOS() {
+        slistsos = new ArrayList<>();
+        StationBean bean = new StationBean();
+        bean.setId("1234567890");
+        bean.setName("SOS求救");
+        bean.setAddress("南京市-江宁区-秣周东路12号");
+        bean.setE_mylatitude(31.87368);
+        bean.setE_mylongitude(118.83358);
+        bean.setDistance(gps_m(S_mylatitude, S_mylongitude, 31.87368, 118.83358));
+        slistsos.add(bean);
+        // 构建MarkerOption，用于在地图上添加Marker
+        LatLng llA = new LatLng(31.87368, 118.83358);
+        MarkerOptions option = new MarkerOptions().position(llA).icon(bdA);
+        Marker marker = (Marker) mBaiduMap.addOverlay(option);
+        // 将信息保存
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("marker", bean);
+        marker.setExtraInfo(bundle);
+        mBaiduMap.addOverlays(list);
+    }
+
     // 返回单位是米
-    public static double getDistance(double longitude1, double latitude1,
-                                     double longitude2, double latitude2) {
-        double Lat1 = rad(latitude1);
-        double Lat2 = rad(latitude2);
-        double a = Lat1 - Lat2;
-        double b = rad(longitude1) - rad(longitude2);
-        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2)
-                + Math.cos(Lat1) * Math.cos(Lat2)
-                * Math.pow(Math.sin(b / 2), 2)));
+    private double gps_m(double lat_a, double lng_a, double lat_b, double lng_b) {
+        double radLat1 = (lat_a * Math.PI / 180.0);
+        double radLat2 = (lat_b * Math.PI / 180.0);
+        double a = radLat1 - radLat2;
+        double b = (lng_a - lng_b) * Math.PI / 180.0;
+        double s = 2 * Math.asin(Math.sqrt(
+                Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
         s = s * EARTH_RADIUS;
         s = Math.round(s * 10000) / 10000;
         return s;
@@ -587,10 +659,301 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
 
     }
 
+    //底部菜单
+    private void BottomMenu(String name, String address, double distance, String id) {
+        slists = new ArrayList<>();
+        StationBean beana = new StationBean();
+        beana.setType(0);
+        slists.add(beana);
+        StationBean beanb = new StationBean();
+        beanb.setType(1);
+        slists.add(beanb);
+        StationBean beanc = new StationBean();
+        beanc.setName("防火服");
+        beanc.setNumber("2件");
+        beanc.setImage_type("1");
+        beanc.setType(2);
+        slists.add(beanc);
+        StationBean beand = new StationBean();
+        beand.setName("灭火器");
+        beand.setNumber("2件");
+        beand.setImage_type("2");
+        beand.setType(2);
+        slists.add(beand);
+        ListView listView = (ListView) findViewById(R.id.list_view);
+        bottomMenuAdapter = new BottomMenuAdapter(EmergencyRescueActivity.this, slists, name, address, distance, id, m_Handler);
+        listView.setAdapter(bottomMenuAdapter);
+    }
+
+    private ScrollLayout.OnScrollChangedListener mOnScrollChangedListener = new ScrollLayout.OnScrollChangedListener() {
+        @Override
+        public void onScrollProgressChanged(float currentProgress) {
+            if (currentProgress >= 0) {
+                float precent = 255 * currentProgress;
+                if (precent > 255) {
+                    precent = 255;
+                } else if (precent < 0) {
+                    precent = 0;
+                }
+                mScrollLayout.getBackground().setAlpha(255 - (int) precent);
+//                if (foot.getVisibility() == View.VISIBLE)
+//                foot.setVisibility(View.GONE);
+            }
+        }
+
+        @Override
+        public void onScrollFinished(ScrollLayout.Status currentStatus) {
+            if (currentStatus.equals(ScrollLayout.Status.EXIT)) {
+//                foot.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onChildScroll(int top) {
+        }
+    };
+
+    //快速找到所需要的站点位置
+    private void ChooseMyLocation(double la, double lo) {
+        // 开启定位功能
+        mBaiduMap.setMyLocationEnabled(true);
+        // 构造定位数据
+        MyLocationData locationData = new MyLocationData.Builder()
+                .latitude(la)
+                .longitude(lo)
+                .build();
+        // 设置定位数据
+        mBaiduMap.setMyLocationData(locationData);
+        // 设置定位图层的配置，设置图标跟随状态（图标一直在地图中心）
+        MyLocationConfiguration config = new MyLocationConfiguration(
+                MyLocationConfiguration.LocationMode.FOLLOWING, true, null);
+        mBaiduMap.setMyLocationConfigeration(config);
+        // 当不需要定位时，关闭定位图层
+        mBaiduMap.setMyLocationEnabled(false);
+
+        StationBean bean = new StationBean();
+        bean.setE_mylatitude(E_mylatitude);
+        bean.setE_mylongitude(E_mylongitude);
+        // 将信息保存
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("marker", bean);
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler m_Handler = new Handler() {
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                //一键开门
+                case 5859590:
+                    i = 0;
+                    handler.postDelayed(runnable, 2000);// 每两秒执行一次runnable.
+                    break;
+                //还物资
+                case 5859591:
+                    Intent intent_Warehousing = new Intent(EmergencyRescueActivity.this, MaterialManagementCapture.class);
+                    intent_Warehousing.putExtra("mode", "Warehousing");
+                    startActivity(intent_Warehousing);
+                    break;
+                //取物质
+                case 5859592:
+                    Intent intent_OutOfStock = new Intent(EmergencyRescueActivity.this, MaterialManagementCapture.class);
+                    intent_OutOfStock.putExtra("mode", "OutOfStock");
+                    startActivity(intent_OutOfStock);
+                    break;
+                //报损
+                case 5859593:
+                    Intent intent_Reportloss = new Intent(EmergencyRescueActivity.this, MaterialManagementCapture.class);
+                    intent_Reportloss.putExtra("mode", "Reportloss");
+                    startActivity(intent_Reportloss);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+
+    /**
+     * 显示弹出窗
+     */
+    private void showInfoWindow(LatLng ll, String name) {
+        //创建InfoWindow展示的view
+        View contentView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.infowindow_item, null);
+        TextView tvCount = (TextView) contentView.findViewById(R.id.tv_count);
+        tvCount.setText(name);
+        //创建InfoWindow , 传入 view， 地理坐标， y 轴偏移量
+        InfoWindow infoWindow = new InfoWindow(contentView, ll, -80);
+        //显示InfoWindow
+        mBaiduMap.showInfoWindow(infoWindow);
+
+    }
+
+    private boolean hasBasePhoneAuth() {
+        PackageManager pm = this.getPackageManager();
+        for (String auth : authBaseArr) {
+            if (pm.checkPermission(auth, this.getPackageName()) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //============驾车导航===================
+    private boolean initDirs() {
+        mSDCardPath = getSdcardDir();
+        if (mSDCardPath == null) {
+            return false;
+        }
+        File f = new File(mSDCardPath, APP_FOLDER_NAME);
+        if (!f.exists()) {
+            try {
+                f.mkdir();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void initNavi() {
+        // 申请权限
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            if (!hasBasePhoneAuth()) {
+                this.requestPermissions(authBaseArr, authBaseRequestCode);
+                return;
+            }
+        }
+        BaiduNaviManagerFactory.getBaiduNaviManager().init(this,
+                mSDCardPath, APP_FOLDER_NAME, new IBaiduNaviManager.INaviInitListener() {
+                    @Override
+                    public void onAuthResult(int status, String msg) {
+                        String result;
+                        if (0 == status) {
+                            result = "key校验成功!";
+                        } else {
+                            result = "key校验失败, " + msg;
+                        }
+                    }
+
+                    @Override
+                    public void initStart() {
+                    }
+
+                    @Override
+                    public void initSuccess() {
+                        hasInitSuccess = true;
+                        // 初始化tts
+                        initTTS();
+                    }
+
+                    @Override
+                    public void initFailed() {
+                    }
+                });
+    }
+
+    private void initTTS() {
+        // 使用内置TTS
+        BaiduNaviManagerFactory.getTTSManager().initTTS(getApplicationContext(),
+                getSdcardDir(), APP_FOLDER_NAME, NormalUtils.getTTSAppID());
+        // 注册同步内置tts状态回调
+        BaiduNaviManagerFactory.getTTSManager().setOnTTSStateChangedListener(
+                new IBNTTSManager.IOnTTSPlayStateChangedListener() {
+                    @Override
+                    public void onPlayStart() {
+                        System.out.println("==============111");
+                    }
+
+                    @Override
+                    public void onPlayEnd(String speechId) {
+                        System.out.println("==============2222");
+                    }
+
+                    @Override
+                    public void onPlayError(int code, String message) {
+                        System.out.println("==============3333" + message);
+                    }
+                }
+        );
+
+        // 注册内置tts 异步状态消息
+        BaiduNaviManagerFactory.getTTSManager().setOnTTSStateChangedHandler(
+                new Handler(Looper.getMainLooper()) {
+                    @Override
+                    public void handleMessage(Message msg) {
+                    }
+                }
+        );
+    }
+
+
+    private String getSdcardDir() {
+        if (Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)) {
+            return Environment.getExternalStorageDirectory().toString();
+        }
+        return null;
+    }
+
+    private void routeplanToNavi(final int coType) {
+        if (!hasInitSuccess) {
+            Toast.makeText(EmergencyRescueActivity.this, "还未初始化!", Toast.LENGTH_SHORT).show();
+        }
+
+        BNRoutePlanNode sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "悠谷小镇", "悠谷小镇", coType);
+        BNRoutePlanNode eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "新街口", "新街口", coType);
+        switch (coType) {
+            case CoordinateType.BD09LL: {
+                sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "悠谷小镇", "悠谷小镇", coType);
+                eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "新街口", "新街口", coType);
+                break;
+            }
+            default:
+                break;
+        }
+
+        mStartNode = sNode;
+        List<BNRoutePlanNode> list = new ArrayList<BNRoutePlanNode>();
+        list.add(sNode);
+        list.add(eNode);
+
+        BaiduNaviManagerFactory.getRoutePlanManager().routeplanToNavi(
+                list,
+                IBNRoutePlanManager.RoutePlanPreference.ROUTE_PLAN_PREFERENCE_DEFAULT,
+                null,
+                new Handler(Looper.getMainLooper()) {
+                    @Override
+                    public void handleMessage(Message msg) {
+                        switch (msg.what) {
+                            case IBNRoutePlanManager.MSG_NAVI_ROUTE_PLAN_START:
+                                break;
+                            case IBNRoutePlanManager.MSG_NAVI_ROUTE_PLAN_SUCCESS:
+                                break;
+                            case IBNRoutePlanManager.MSG_NAVI_ROUTE_PLAN_FAILED:
+                                break;
+                            case IBNRoutePlanManager.MSG_NAVI_ROUTE_PLAN_TO_NAVI:
+                                Intent intent = new Intent(EmergencyRescueActivity.this,
+                                        DemoGuideActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable(ROUTE_PLAN_NODE, mStartNode);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                                break;
+                            default:
+                                // nothing
+                                break;
+                        }
+                    }
+                });
+    }
+
+    //=================================================================================
+
     /**
      * Android6.0之后需要动态申请权限
      */
-    private void requestPermission() {
+    private void RequestPermission() {
         if (Build.VERSION.SDK_INT >= 23 && !isPermissionRequested) {
             isPermissionRequested = true;
             ArrayList<String> permissions = new ArrayList<>();
@@ -613,5 +976,17 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                 Toast.makeText(EmergencyRescueActivity.this, "没有相机权限,请打开后重试", Toast.LENGTH_SHORT).show();
             }
         }
+        if (requestCode == authBaseRequestCode) {
+            for (int ret : grantResults) {
+                if (ret == 0) {
+                    continue;
+                } else {
+                    Toast.makeText(EmergencyRescueActivity.this, "缺少导航基本的权限!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            initNavi();
+        }
     }
+
 }
