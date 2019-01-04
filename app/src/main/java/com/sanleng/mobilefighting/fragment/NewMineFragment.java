@@ -1,5 +1,6 @@
 package com.sanleng.mobilefighting.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -50,6 +51,7 @@ public class NewMineFragment extends BaseFragment implements OnClickListener {
     private TextView item_search_addb;
     private SweetAlertDialog sweetAlertDialog;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {

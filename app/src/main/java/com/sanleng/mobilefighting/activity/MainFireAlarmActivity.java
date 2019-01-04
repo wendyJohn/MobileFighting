@@ -1,6 +1,7 @@
 package com.sanleng.mobilefighting.activity;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.AppOpsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -338,6 +339,7 @@ public class MainFireAlarmActivity extends FragmentActivity {
 
     }
     //判断消息通知栏是否打开
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private boolean isNotificationEnabled(Context context) {
         String CHECK_OP_NO_THROW = "checkOpNoThrow";
         String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";

@@ -16,7 +16,7 @@
             android:layout_weight="1"
             android:background="#FFF"
             pv:pv_background_color="#FFF"
-            pv:pv_host_text="智慧消防校园版"
+            pv:pv_host_text="智慧消防"
             pv:pv_host_text_anim_time="800"
             pv:pv_particle_text="1.0"
             pv:pv_particle_text_size="16sp"

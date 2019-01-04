@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -55,6 +56,7 @@ import com.baidu.navisdk.adapter.BaiduNaviManagerFactory;
 import com.baidu.navisdk.adapter.IBNRoutePlanManager;
 import com.baidu.navisdk.adapter.IBNTTSManager;
 import com.baidu.navisdk.adapter.IBaiduNaviManager;
+import com.baidu.navisdk.adapter.impl.BaiduNaviManager;
 import com.baidu.platform.comapi.walknavi.widget.ArCameraView;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.adapter.BottomMenuAdapter;
@@ -138,7 +140,7 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
     };
     private static final int authBaseRequestCode = 1;
     private boolean hasInitSuccess = false;
-    private static final String APP_FOLDER_NAME = "BNSDKSimpleDemo";
+    private static final String APP_FOLDER_NAME = "移动消防安全防火";
     public static final String ROUTE_PLAN_NODE = "routePlanNode";
     private String mSDCardPath = null;
     private BNRoutePlanNode mStartNode = null;
@@ -258,8 +260,7 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
         //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
         option.setIgnoreKillProcess(false);
         option.setOpenGps(true);// 打开gps
-        // 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，
-        // 设置是否在stop的时候杀死这个进程，默认不杀死
+        // 可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程， 设置是否在stop的时候杀死这个进程，默认不杀死
         option.SetIgnoreCacheException(false);
         //可选，默认false，设置是否收集CRASH信息，默认收集
         option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
@@ -852,6 +853,14 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                     public void initFailed() {
                     }
                 });
+
+    }
+
+    private String getSdcardDir() {
+        if (Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)) {
+            return Environment.getExternalStorageDirectory().toString();
+        }
+        return null;
     }
 
     private void initTTS() {
@@ -863,17 +872,17 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                 new IBNTTSManager.IOnTTSPlayStateChangedListener() {
                     @Override
                     public void onPlayStart() {
-                        System.out.println("==============111");
+                        Log.e("BNSDKDemo", "ttsCallback.onPlayStart");
                     }
 
                     @Override
                     public void onPlayEnd(String speechId) {
-                        System.out.println("==============2222");
+                        Log.e("BNSDKDemo", "ttsCallback.onPlayEnd");
                     }
 
                     @Override
                     public void onPlayError(int code, String message) {
-                        System.out.println("==============3333" + message);
+                        Log.e("BNSDKDemo", "ttsCallback.onPlayError");
                     }
                 }
         );
@@ -883,17 +892,21 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                 new Handler(Looper.getMainLooper()) {
                     @Override
                     public void handleMessage(Message msg) {
+                        Log.e("BNSDKDemo", "ttsHandler.msg.what=" + msg.what);
+                        int type = msg.what;
+                        switch (type) {
+                            case BaiduNaviManager.TTSPlayMsgType.PLAY_START_MSG: {
+                                break;
+                            }
+                            case BaiduNaviManager.TTSPlayMsgType.PLAY_END_MSG: {
+                                break;
+                            }
+                            default:
+                                break;
+                        }
                     }
                 }
         );
-    }
-
-
-    private String getSdcardDir() {
-        if (Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED)) {
-            return Environment.getExternalStorageDirectory().toString();
-        }
-        return null;
     }
 
     private void routeplanToNavi(final int coType) {
@@ -901,12 +914,12 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
             Toast.makeText(EmergencyRescueActivity.this, "还未初始化!", Toast.LENGTH_SHORT).show();
         }
 
-        BNRoutePlanNode sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "悠谷小镇", "悠谷小镇", coType);
-        BNRoutePlanNode eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "新街口", "新街口", coType);
+        BNRoutePlanNode sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "", "", coType);
+        BNRoutePlanNode eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "", "", coType);
         switch (coType) {
             case CoordinateType.BD09LL: {
-                sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "悠谷小镇", "悠谷小镇", coType);
-                eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "新街口", "新街口", coType);
+                sNode = new BNRoutePlanNode(S_mylongitude, S_mylatitude, "", "", coType);
+                eNode = new BNRoutePlanNode(E_mylongitude, E_mylatitude, "", "", coType);
                 break;
             }
             default:
@@ -947,7 +960,6 @@ public class EmergencyRescueActivity extends Activity implements OnClickListener
                     }
                 });
     }
-
     //=================================================================================
 
     /**

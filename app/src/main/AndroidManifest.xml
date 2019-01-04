@@ -19,9 +19,7 @@
         android:name="com.permissions.MY_BROADCASTS"
         android:protectionLevel="signature" />
 
-
     <permission android:name="android.permission.BAIDU_LOCATION_SERVICE" />
-
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
@@ -124,6 +122,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
+
         <activity
             android:name="com.sanleng.mobilefighting.activity.WNaviGuideActivity"
             android:screenOrientation="portrait"
@@ -251,7 +250,6 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
-
         <!--密码修改 -->
         <activity
             android:name="com.sanleng.mobilefighting.activity.PwdChangeActivity"

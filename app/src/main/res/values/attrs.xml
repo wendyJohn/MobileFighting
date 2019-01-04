@@ -24,22 +24,22 @@
         <attr name="android:galleryItemBackground" />
     </declare-styleable>
     <declare-styleable name="ToggleButton">
-        <attr name="borderWidth" format="dimension"></attr>
-        <attr name="offBorderColor" format="reference|color"></attr>
-        <attr name="offColor" format="reference|color"></attr>
-        <attr name="onColor" format="reference|color"></attr>
-        <attr name="spotColor" format="reference|color"></attr>
-        <attr name="animate" format="reference|boolean"></attr>
-        <attr name="isDefaultOn" format="reference|boolean"></attr>
+        <attr name="borderWidth" format="dimension" />
+        <attr name="offBorderColor" format="reference|color" />
+        <attr name="offColor" format="reference|color" />
+        <attr name="onColor" format="reference|color" />
+        <attr name="spotColor" format="reference|color" />
+        <attr name="animate" format="reference|boolean" />
+        <attr name="isDefaultOn" format="reference|boolean" />
     </declare-styleable>
     <declare-styleable name="SVCircleProgressBar">
         <attr name="roundColor" format="color" />
         <attr name="roundProgressColor" format="color" />
-        <attr name="roundWidth" format="dimension"></attr>
-        <attr name="max" format="integer"></attr>
+        <attr name="roundWidth" format="dimension" />
+        <attr name="max" format="integer" />
         <attr name="style">
-            <enum name="STROKE" value="0"></enum>
-            <enum name="FILL" value="1"></enum>
+            <enum name="STROKE" value="0" />
+            <enum name="FILL" value="1" />
         </attr>
     </declare-styleable>
     <declare-styleable name="roundedimageview">

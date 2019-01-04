@@ -3,13 +3,6 @@
  */
 package com.sanleng.mobilefighting.baidumap;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
 import com.baidu.navisdk.adapter.BNRoutePlanNode.CoordinateType;
 import com.baidu.navisdk.adapter.BaiduNaviManagerFactory;
@@ -18,6 +11,13 @@ import com.baidu.navisdk.adapter.map.BNItemizedOverlay;
 import com.baidu.navisdk.adapter.map.BNOverlayItem;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.activity.EmergencyRescueActivity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 
 /**
  * 诱导界面
@@ -125,7 +125,7 @@ public class DemoGuideActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
-        if ( !mRouteGuideManager.onKeyDown(keyCode, event) ) {
+        if (!mRouteGuideManager.onKeyDown(keyCode, event)) {
             return super.onKeyDown(keyCode, event);
         }
         return true;

@@ -27,7 +27,6 @@ import com.sanleng.mobilefighting.activity.HostMonitoringActivity;
 import com.sanleng.mobilefighting.activity.InspectingAssistantActivity;
 import com.sanleng.mobilefighting.activity.InspectionMissionActivity;
 import com.sanleng.mobilefighting.activity.MainTabActivity;
-import com.sanleng.mobilefighting.activity.MonStationActivity;
 import com.sanleng.mobilefighting.activity.MonitoringStationActivity;
 import com.sanleng.mobilefighting.activity.PatrolHandleActivity;
 import com.sanleng.mobilefighting.activity.PatrolPointScanningActivity;

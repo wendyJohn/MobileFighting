@@ -1,7 +1,9 @@
 package com.sanleng.mobilefighting;
 
 import android.app.Application;
-import android.os.Build;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.company.NetSDK.NET_DEVICEINFO_Ex;
@@ -15,7 +17,7 @@ import com.yolanda.nohttp.rest.RequestQueue;
 
 import cn.jpush.android.api.JPushInterface;
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
 
     private static Application _instance;
     public static RequestQueue requestQueue = null;// 请求队列
@@ -24,6 +26,12 @@ public class MyApplication extends Application {
 
     private long mloginHandle;
     private NET_DEVICEINFO_Ex mDeviceInfo;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
