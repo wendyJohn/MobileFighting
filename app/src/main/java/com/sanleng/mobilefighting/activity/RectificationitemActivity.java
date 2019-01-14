@@ -150,7 +150,6 @@ public class RectificationitemActivity extends Activity implements OnClickListen
 
     // 提交
     public void doCommit() {
-        // 提交
         String desc = info_editText.getText().toString().trim();
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < Bimp.drr.size(); i++) {
@@ -162,6 +161,7 @@ public class RectificationitemActivity extends Activity implements OnClickListen
         post.execute();
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler m_handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {

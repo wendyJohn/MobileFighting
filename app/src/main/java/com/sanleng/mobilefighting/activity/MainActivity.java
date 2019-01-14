@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.sanleng.mobilefighting.R;
 import com.sanleng.mobilefighting.util.Utils;
 
+import cn.jpush.android.service.PushService;
+
 public class MainActivity extends TabActivity {
     private TabHost tabHost;
     private FrameLayout frame_home, frame_forum, frame_forums, frame_forumps;
@@ -32,6 +34,7 @@ public class MainActivity extends TabActivity {
     }
 
     private void initView() {
+
         // TODO Auto-generated method stub
         tabHost = getTabHost();
         Intent intent_one = new Intent();

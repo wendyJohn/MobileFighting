@@ -138,7 +138,6 @@ public class DeviceItemActivity extends Activity {
 		RequestUtils.ClientPost(URLs.DeviceItem_URL, params, new NetCallBack() {
 			@Override
 			public void onStart() {
-//				promptDialog.showLoading("正在加载...", true);
 				super.onStart();
 			}
 

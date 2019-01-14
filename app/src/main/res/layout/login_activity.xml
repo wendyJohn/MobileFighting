@@ -115,7 +115,7 @@
                 android:layout_marginTop="@dimen/widget_size_60"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="Copyright©2018江苏三棱智慧物联发展股份有限公司版权所有"
+                android:text="Copyright©2018-2019江苏三棱智慧物联发展股份有限公司版权所有"
                 android:textColor="@color/text_blue" />
 
         </RelativeLayout>

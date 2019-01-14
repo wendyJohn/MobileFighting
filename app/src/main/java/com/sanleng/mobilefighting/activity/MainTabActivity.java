@@ -350,6 +350,7 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
 		return false;
 	}
 
+	@SuppressLint("HandlerLeak")
 	private Handler m_handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -408,6 +409,7 @@ public class MainTabActivity extends FragmentActivity implements View.OnClickLis
 		}
 	}
 
+	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
 		@SuppressLint("HandlerLeak")
 		@Override
